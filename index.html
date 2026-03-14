@@ -630,12 +630,30 @@
       margin-bottom: 24px;
       overflow: hidden;
     }
-    .company-profile-photo {
-      width: 100%; aspect-ratio: 1;
-      object-fit: cover; object-position: top;
-      display: block;
+    .company-profile-photo-wrap {
+      position: relative;
+      margin: 32px 32px 0;
     }
-    .company-profile-body { padding: 36px 40px; }
+    .company-profile-photo-wrap::before {
+      content: '';
+      position: absolute;
+      top: -10px; left: -10px;
+      right: 10px; bottom: 10px;
+      border: 1px solid var(--accent);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .company-profile-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      position: relative;
+      z-index: 1;
+      filter: grayscale(8%);
+    }
+    .company-profile-body { padding: 28px 40px 36px; }
     .company-profile-box .profile-name {
       font-size: 1.3rem; font-weight: 700;
       color: var(--white); margin-bottom: 8px;
@@ -702,7 +720,6 @@
     <ul class="nav-links">
       <li><a href="#problem">課題</a></li>
       <li><a href="#features">特徴</a></li>
-      <li><a href="#results">実績</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#company">事務所概要</a></li>
     </ul>
@@ -862,35 +879,6 @@
     </div>
   </section>
 
-  <!-- Results -->
-  <section class="results" id="results">
-    <div class="section-inner">
-      <div class="section-header center fi">
-        <p class="section-eyebrow">Results</p>
-        <h2 class="section-title" style="color:var(--white);">数字が証明する<span style="color:var(--accent);">導入実績</span></h2>
-        <p class="section-lead" style="margin:0 auto; max-width:560px;">大手製造業から中堅サービス業まで、様々な業種の人材育成を支援してきた実績です。</p>
-      </div>
-      <div class="stats-grid">
-        <div class="stat fi delay-1">
-          <div class="stat-num">150<span>+</span></div>
-          <div class="stat-label">累計導入企業数</div>
-        </div>
-        <div class="stat fi delay-2">
-          <div class="stat-num">93<span>%</span></div>
-          <div class="stat-label">受講者満足度</div>
-        </div>
-        <div class="stat fi delay-3">
-          <div class="stat-num">3<span>ヶ月</span></div>
-          <div class="stat-label">平均で変化を実感</div>
-        </div>
-        <div class="stat fi delay-4">
-          <div class="stat-num">8<span>年</span></div>
-          <div class="stat-label">サービス提供実績</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- FAQ -->
   <section class="faq" id="faq">
     <div class="section-inner">
@@ -965,7 +953,9 @@
       <div class="company-grid">
         <div class="company-side fi delay-1">
           <div class="company-profile-box">
-            <img src="profile.jpg" alt="代表 加藤あゆみ" class="company-profile-photo">
+            <div class="company-profile-photo-wrap">
+              <img src="profile.jpg" alt="代表 加藤あゆみ" class="company-profile-photo">
+            </div>
             <div class="company-profile-body">
               <div class="profile-title">代表 / 社会保険労務士</div>
               <div class="profile-name">加藤 あゆみ</div>
