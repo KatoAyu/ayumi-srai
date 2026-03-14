@@ -625,11 +625,17 @@
       position: sticky; top: 100px;
     }
     .company-profile-box {
-      padding: 48px;
       background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
       color: var(--white);
       margin-bottom: 24px;
+      overflow: hidden;
     }
+    .company-profile-photo {
+      width: 100%; aspect-ratio: 1;
+      object-fit: cover; object-position: top;
+      display: block;
+    }
+    .company-profile-body { padding: 36px 40px; }
     .company-profile-box .profile-name {
       font-size: 1.3rem; font-weight: 700;
       color: var(--white); margin-bottom: 8px;
@@ -698,7 +704,7 @@
       <li><a href="#features">特徴</a></li>
       <li><a href="#results">実績</a></li>
       <li><a href="#faq">FAQ</a></li>
-      <li><a href="#company">会社概要</a></li>
+      <li><a href="#company">事務所概要</a></li>
     </ul>
     <a href="#contact" class="nav-cta">無料相談</a>
     <div class="nav-hamburger" id="hamburger">
@@ -742,24 +748,24 @@
         <div>
           <p class="section-eyebrow fi">Problem</p>
           <h2 class="section-title fi delay-1">こんなお悩みは<br><span class="accent">ありませんか？</span></h2>
-          <p class="section-lead fi delay-2">多くの企業が「研修を実施しているのに、現場での変化が見えない」という課題を抱えています。</p>
+          <p class="section-lead fi delay-2">中小企業の経営者・人事担当者からよく寄せられるお悩みです。社会保険労務士として、これらを一括してサポートします。</p>
           <div class="problem-list">
             <div class="problem-item fi delay-2">
               <div class="problem-item-text">
-                <h4>研修効果が現場に活かされない</h4>
-                <p>受講直後は意欲的でも、日常業務に戻ると元の行動パターンに戻ってしまう。</p>
+                <h4>就業規則が古いまま、労使トラブルが不安</h4>
+                <p>法改正のたびに対応できているか自信がない。いざトラブルになったとき、会社を守れるか心配。</p>
               </div>
             </div>
             <div class="problem-item fi delay-3">
               <div class="problem-item-text">
-                <h4>コストをかけても効果が測れない</h4>
-                <p>研修費用を投じても、ROIや具体的な変化を数値で把握できていない。</p>
+                <h4>社会保険・助成金の手続きが負担になっている</h4>
+                <p>採用・退職のたびに手続きが発生するが、担当者が忙しく、ミスやもれが心配。</p>
               </div>
             </div>
             <div class="problem-item fi delay-4">
               <div class="problem-item-text">
-                <h4>一過性のモチベーションで終わる</h4>
-                <p>受講後のフォローがなく、時間が経つとモチベーションが自然と低下してしまう。</p>
+                <h4>採用しても定着しない、人が育たない</h4>
+                <p>せっかく採用しても早期離職が続く。育成の仕組みがなく、管理職も部下への関わり方に悩んでいる。</p>
               </div>
             </div>
           </div>
@@ -793,29 +799,29 @@
     <div class="section-inner">
       <div class="section-header center fi">
         <p class="section-eyebrow">Our Approach</p>
-        <h2 class="section-title">行動変容を起こす<span class="accent">3つのステップ</span></h2>
-        <p class="section-lead">知識を習得するだけでなく、現場で「使える」状態にするための設計。それが私たちのアプローチです。</p>
+        <h2 class="section-title">労務・育成を<span class="accent">ワンストップで支援</span></h2>
+        <p class="section-lead">手続き対応から職場づくりまで、社労士と人材育成の専門家として一貫してサポートします。</p>
       </div>
       <div class="solution-steps">
         <div class="solution-step fi delay-1">
           <div class="step-number">01</div>
-          <div class="step-icon"><span class="material-icons">search</span></div>
-          <h3>現状診断・課題設計</h3>
-          <p>ヒアリングと組織診断を通じて、貴社固有の課題を特定。汎用的な研修ではなく、課題に直結したプログラムを設計します。</p>
+          <div class="step-icon"><span class="material-icons">gavel</span></div>
+          <h3>労務・法務の基盤整備</h3>
+          <p>就業規則の作成・見直し、社会保険・雇用保険の手続き代行、労務相談など、会社を守る土台を整えます。</p>
           <div class="solution-step-arrow"><span class="material-icons">arrow_forward</span></div>
         </div>
         <div class="solution-step fi delay-2">
           <div class="step-number">02</div>
           <div class="step-icon"><span class="material-icons">groups</span></div>
-          <h3>アクションラーニング実施</h3>
-          <p>実際の業務課題を題材にした体験型プログラムで、受講者が主体的に考え、行動する力を育みます。</p>
+          <h3>採用・定着・人材育成</h3>
+          <p>採用から入社後の育成・研修設計まで。人が定着し、自走できる組織をつくるための仕組みを構築します。</p>
           <div class="solution-step-arrow"><span class="material-icons">arrow_forward</span></div>
         </div>
         <div class="solution-step fi delay-3">
           <div class="step-number">03</div>
           <div class="step-icon"><span class="material-icons">insights</span></div>
-          <h3>継続フォローと効果測定</h3>
-          <p>研修後3〜6ヶ月の継続フォローで定着を支援。定量・定性の両面から効果を可視化し、次のアクションに繋げます。</p>
+          <h3>助成金活用・業務効率化</h3>
+          <p>活用できる助成金を診断・申請サポート。AI・ツール導入による業務効率化もあわせてご提案します。</p>
         </div>
       </div>
     </div>
@@ -834,23 +840,23 @@
       <div class="section-header fi">
         <p class="section-eyebrow">Features</p>
         <h2 class="section-title">選ばれる<span class="accent">3つの理由</span></h2>
-        <p class="section-lead">導入企業から最も評価されている、ELEVATEならではの強みをご紹介します。</p>
+        <p class="section-lead">社会保険労務士として、労務管理から人材育成まで一人の専門家に任せられることが最大の強みです。</p>
       </div>
       <div class="features-grid">
         <div class="feature-card fi delay-1">
-          <div class="feature-icon"><span class="material-icons">tune</span></div>
-          <h3>完全カスタマイズ設計</h3>
-          <p>業種・規模・現状の課題に応じて、プログラムをゼロから設計します。パッケージ型の研修では拾いきれない、貴社固有のニーズに応えます。</p>
+          <div class="feature-icon"><span class="material-icons">balance</span></div>
+          <h3>社労士×育成の専門家</h3>
+          <p>労働法・社会保険の知識と、キャリアコンサルタントとしての人材育成スキルを兼ね備えた専門家。法的根拠のある実践的なアドバイスが可能です。</p>
         </div>
         <div class="feature-card fi delay-2">
-          <div class="feature-icon"><span class="material-icons">psychology</span></div>
-          <h3>アクションラーニング手法</h3>
-          <p>「聞いて学ぶ」から「やって学ぶ」へ。実際の業務課題を教材に、チームで考え・動くプロセスを通じて、確かな行動変容を実現します。</p>
+          <div class="feature-icon"><span class="material-icons">handshake</span></div>
+          <h3>中小企業に寄り添う伴走型</h3>
+          <p>大手事務所のような画一的な対応ではなく、経営者と直接対話しながら、貴社の実情に合ったオーダーメイドの支援を提供します。</p>
         </div>
         <div class="feature-card fi delay-3">
-          <div class="feature-icon"><span class="material-icons">bar_chart</span></div>
-          <h3>効果測定と継続サポート</h3>
-          <p>研修後も終わりではありません。KPI設定・定期レポート・フォローセッションで、現場への定着まで伴走します。</p>
+          <div class="feature-icon"><span class="material-icons">auto_awesome</span></div>
+          <h3>AI・最新技術の積極活用</h3>
+          <p>書類作成・情報収集にAIを活用し、本質的な相談・支援に時間を使う体制を整備。クライアントへの提案スピードと質を両立します。</p>
         </div>
       </div>
     </div>
@@ -1013,17 +1019,20 @@
     <div class="section-inner">
       <div class="section-header fi">
         <p class="section-eyebrow">Company</p>
-        <h2 class="section-title">会社<span class="accent">概要</span></h2>
+        <h2 class="section-title">事務所<span class="accent">概要</span></h2>
       </div>
       <div class="company-grid">
         <div class="company-side fi delay-1">
           <div class="company-profile-box">
-            <div class="profile-title">代表 / 社会保険労務士</div>
-            <div class="profile-name">加藤 あゆみ</div>
-            <p class="profile-message">「法律を武器に、人と会社を守りたい」という思いで開業しました。難しい労務の話をできるだけわかりやすく、経営者の方が安心して前に進めるよう、伴走してまいります。</p>
-            <div class="company-qualifications">
-              <div class="company-qualification">社会保険労務士</div>
-              <div class="company-qualification">キャリアコンサルタント</div>
+            <img src="speaker.png" alt="代表 加藤あゆみ" class="company-profile-photo">
+            <div class="company-profile-body">
+              <div class="profile-title">代表 / 社会保険労務士</div>
+              <div class="profile-name">加藤 あゆみ</div>
+              <p class="profile-message">「法律を武器に、人と会社を守りたい」という思いで開業しました。難しい労務の話をできるだけわかりやすく、経営者の方が安心して前に進めるよう、伴走してまいります。</p>
+              <div class="company-qualifications">
+                <div class="company-qualification">社会保険労務士</div>
+                <div class="company-qualification">キャリアコンサルタント</div>
+              </div>
             </div>
           </div>
         </div>
@@ -1123,7 +1132,7 @@
           <div class="footer-links-col">
             <h4>Company</h4>
             <ul>
-              <li><a href="#company">会社概要</a></li>
+              <li><a href="#company">事務所概要</a></li>
               <li><a href="#">実績・事例</a></li>
               <li><a href="#">メディア掲載</a></li>
               <li><a href="#">採用情報</a></li>
