@@ -749,6 +749,8 @@
       .company-side { position: static; }
       .company-table th { width: 110px; }
       .company-profile-box { padding: 32px 24px; }
+      .company-profile-photo-wrap { margin: 24px auto 0; max-width: 260px; }
+      .company-profile-photo { aspect-ratio: 3 / 4; }
       .footer-top { flex-direction: column; }
       .footer-links-group { gap: 32px; }
       .footer-bottom { flex-direction: column; text-align: center; }
@@ -1200,17 +1202,12 @@
           const url   = clean(cols[1]);
           const date  = clean(cols[2]);
           if (!title || !url) return '';
-          return `<a href="${url}" target="_blank" rel="noopener" class="media-card fi delay-${(i % 3) + 1}">
+          return `<a href="${url}" target="_blank" rel="noopener" class="media-card visible">
             <div class="media-card-source">TRILL</div>
             <div class="media-card-title">${title}</div>
             ${date ? `<div class="media-card-date">${date}</div>` : ''}
           </a>`;
         }).join('');
-        // re-trigger scroll animation for new elements
-        document.querySelectorAll('.media-card.fi').forEach(el => {
-          const rect = el.getBoundingClientRect();
-          if (rect.top < window.innerHeight * 0.92) el.classList.add('visible');
-        });
       } catch(e) {
         grid.innerHTML = '<p class="media-loading">記事の読み込みに失敗しました。</p>';
       }
