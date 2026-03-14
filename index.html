@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ELEVATE | 成果直結型 企業研修・人材育成</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <style>
+    /* ===== CSS Variables ===== */
+    :root {
+      --primary: #1B2D4F;
+      --primary-dark: #0D1F36;
+      --primary-light: #2A4273;
+      --accent: #B8944A;
+      --accent-light: #D4AF6A;
+      --bg: #F7F5F0;
+      --bg-dark: #EDEAE1;
+      --white: #FFFFFF;
+      --text: #1B2D4F;
+      --text-muted: #6B7280;
+      --border: rgba(184, 148, 74, 0.2);
+      --shadow: 0 4px 24px rgba(27, 45, 79, 0.1);
+      --shadow-lg: 0 12px 48px rgba(27, 45, 79, 0.15);
+      --radius: 4px;
+      --radius-sm: 2px;
+      --radius-md: 8px;
+    }
+
+    /* ===== Reset ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Noto Sans JP', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+
+    /* ===== Scroll Progress Bar ===== */
+    .scroll-indicator {
+      position: fixed; top: 0; left: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      z-index: 1000;
+      width: 0%;
+      transition: width 0.1s;
+    }
+
+    /* ===== Nav ===== */
+    #mainNav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 24px 48px;
+      transition: background 0.3s, box-shadow 0.3s, padding 0.3s;
+    }
+    #mainNav.scrolled {
+      background: rgba(13, 31, 54, 0.96);
+      backdrop-filter: blur(12px);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.25);
+      padding: 16px 48px;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--white);
+      letter-spacing: 0.12em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 40px; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      display: inline-flex; align-items: center;
+      padding: 10px 24px;
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent); color: var(--primary-dark); }
+    .nav-hamburger {
+      display: none; flex-direction: column; gap: 5px; cursor: pointer;
+    }
+    .nav-hamburger span {
+      display: block; width: 24px; height: 2px; background: var(--white);
+    }
+
+    /* ===== Buttons ===== */
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 18px 44px;
+      background: var(--accent);
+      color: var(--primary-dark);
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.08em;
+      transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+      box-shadow: 0 4px 24px rgba(184, 148, 74, 0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(184, 148, 74, 0.5);
+      background: var(--accent-light);
+    }
+    .btn-outline {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 16px 40px;
+      border: 1px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      font-size: 0.9rem; font-weight: 500;
+      letter-spacing: 0.05em;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--accent);
+      background: rgba(184, 148, 74, 0.1);
+    }
+
+    /* ===== Layout ===== */
+    .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    section { padding: 100px 0; }
+    .section-eyebrow {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700;
+      line-height: 1.35;
+      color: var(--text);
+      margin-bottom: 20px;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    .section-title .accent { color: var(--accent); }
+    .section-lead {
+      font-size: 1.02rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      line-height: 1.9;
+      word-break: keep-all; overflow-wrap: anywhere;
+    }
+    .section-header { margin-bottom: 64px; }
+    .section-header.center { text-align: center; }
+    .section-header.center .section-lead { margin: 0 auto; }
+
+    /* ===== Scroll Animation ===== */
+    .fi {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fi.visible { opacity: 1; transform: translateY(0); }
+    .fi.delay-1 { transition-delay: 0.1s; }
+    .fi.delay-2 { transition-delay: 0.2s; }
+    .fi.delay-3 { transition-delay: 0.3s; }
+    .fi.delay-4 { transition-delay: 0.4s; }
+    .fi.delay-5 { transition-delay: 0.5s; }
+
+    /* ===== Wave ===== */
+    .wave { line-height: 0; }
+    .wave svg { display: block; width: 100%; height: 80px; }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      background: linear-gradient(135deg, #0D1F36 0%, #1B2D4F 55%, #2A4273 100%);
+      position: relative; overflow: hidden;
+      padding-top: 80px;
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%;
+      filter: blur(90px); pointer-events: none;
+    }
+    .hero-blob-1 {
+      width: 640px; height: 640px;
+      background: rgba(184, 148, 74, 0.07);
+      top: -120px; right: -180px;
+      animation: float 11s ease-in-out infinite;
+    }
+    .hero-blob-2 {
+      width: 420px; height: 420px;
+      background: rgba(42, 66, 115, 0.35);
+      bottom: -60px; left: -120px;
+      animation: float 15s ease-in-out infinite reverse;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-22px) scale(1.04); }
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 42%; height: 100%;
+      background-image:
+        linear-gradient(rgba(184, 148, 74, 0.055) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(184, 148, 74, 0.055) 1px, transparent 1px);
+      background-size: 56px 56px;
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 1;
+      max-width: 1100px; margin: 0 auto; padding: 0 32px;
+    }
+    .hero-label {
+      display: inline-flex; align-items: center; gap: 14px;
+      margin-bottom: 36px;
+    }
+    .hero-label-line { width: 40px; height: 1px; background: var(--accent); }
+    .hero-label-text {
+      font-size: 0.78rem;
+      letter-spacing: 0.32em;
+      color: var(--accent);
+      text-transform: uppercase;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 5.5vw, 4rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.22;
+      margin-bottom: 28px;
+      word-break: keep-all;
+      overflow-wrap: anywhere;
+    }
+    .hero h1 .accent-gold { color: var(--accent); }
+    .hero-sub {
+      font-size: 1.05rem;
+      color: rgba(255,255,255,0.68);
+      max-width: 560px;
+      line-height: 2.0;
+      margin-bottom: 48px;
+    }
+    .hero-cta-group {
+      display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
+    }
+    .hero-scroll {
+      display: flex; align-items: center; gap: 14px;
+      margin-top: 96px;
+      color: rgba(255,255,255,0.35);
+      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+    }
+    .hero-scroll-line {
+      width: 44px; height: 1px;
+      background: rgba(255,255,255,0.2);
+      position: relative; overflow: hidden;
+    }
+    .hero-scroll-line::after {
+      content: '';
+      position: absolute; top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: var(--accent);
+      animation: scrollLine 2.2s ease infinite;
+    }
+    @keyframes scrollLine {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    /* ===== Problem Section ===== */
+    .problem { background: var(--white); }
+    .problem-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 56px; align-items: start;
+    }
+    .problem-list { display: flex; flex-direction: column; gap: 16px; margin-top: 36px; }
+    .problem-item {
+      display: flex; align-items: flex-start; gap: 16px;
+      padding: 22px 24px;
+      background: var(--bg);
+      border-left: 3px solid var(--accent);
+    }
+    .problem-item .material-icons { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+    .problem-item-text h4 {
+      font-size: 0.95rem; font-weight: 700;
+      margin-bottom: 4px; color: var(--text);
+    }
+    .problem-item-text p { font-size: 0.875rem; color: var(--text-muted); line-height: 1.7; }
+    .problem-highlight {
+      padding: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      position: relative; overflow: hidden;
+    }
+    .problem-highlight::before {
+      content: '';
+      position: absolute; top: -40px; right: -40px;
+      width: 220px; height: 220px;
+      background: rgba(184, 148, 74, 0.09);
+      border-radius: 50%;
+    }
+    .problem-highlight blockquote {
+      font-size: 1.05rem; line-height: 2.0;
+      color: rgba(255,255,255,0.82);
+      font-style: italic;
+      margin-bottom: 32px;
+      position: relative; z-index: 1;
+      word-break: keep-all; overflow-wrap: anywhere;
+    }
+    .problem-highlight-stat {
+      display: flex; gap: 48px;
+      position: relative; z-index: 1;
+    }
+    .problem-highlight-stat div { text-align: center; }
+    .problem-highlight-stat .num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem; font-weight: 600;
+      color: var(--accent); line-height: 1;
+    }
+    .problem-highlight-stat .label {
+      font-size: 0.72rem;
+      color: rgba(255,255,255,0.55);
+      margin-top: 6px; letter-spacing: 0.04em;
+      line-height: 1.5;
+    }
+
+    /* ===== Solution Section ===== */
+    .solution { background: var(--bg); }
+    .solution-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+    .solution-step {
+      background: var(--white);
+      padding: 48px 36px;
+      position: relative;
+    }
+    .step-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 4.5rem; font-weight: 600;
+      color: rgba(184, 148, 74, 0.13);
+      line-height: 1; margin-bottom: 20px;
+    }
+    .step-icon {
+      width: 50px; height: 50px;
+      background: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+    }
+    .step-icon .material-icons { color: var(--accent); font-size: 24px; }
+    .solution-step h3 {
+      font-size: 1.08rem; font-weight: 700;
+      margin-bottom: 12px; color: var(--text);
+      word-break: keep-all;
+    }
+    .solution-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; }
+    .solution-step-arrow {
+      position: absolute; top: 50%; right: -13px;
+      transform: translateY(-50%);
+      width: 26px; height: 26px;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center; z-index: 1;
+    }
+    .solution-step-arrow .material-icons { font-size: 16px; color: var(--white); }
+
+    /* ===== Features Section ===== */
+    .features { background: var(--white); }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .feature-card {
+      padding: 40px 32px;
+      border: 1px solid var(--border);
+      position: relative;
+      transition: box-shadow 0.3s, transform 0.3s;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .feature-card:hover {
+      box-shadow: var(--shadow-lg);
+      transform: translateY(-4px);
+    }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-icon {
+      width: 56px; height: 56px;
+      background: var(--bg);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 24px;
+    }
+    .feature-icon .material-icons { color: var(--primary); font-size: 28px; }
+    .feature-card h3 {
+      font-size: 1.08rem; font-weight: 700;
+      margin-bottom: 12px; color: var(--text);
+      word-break: keep-all;
+    }
+    .feature-card p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; }
+
+    /* ===== Results Section ===== */
+    .results {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      padding: 100px 0;
+    }
+    .results .section-title { color: var(--white); }
+    .results .section-eyebrow { color: var(--accent); }
+    .results .section-lead { color: rgba(255,255,255,0.62); }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2px;
+      background: rgba(255,255,255,0.07);
+      margin-top: 64px;
+    }
+    .stat {
+      padding: 52px 32px; text-align: center;
+      background: rgba(255,255,255,0.03);
+    }
+    .stat-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.8rem; font-weight: 600;
+      color: var(--accent); line-height: 1; margin-bottom: 10px;
+    }
+    .stat-num span { font-size: 1.6rem; vertical-align: super; }
+    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.52); letter-spacing: 0.06em; }
+
+    /* ===== Testimonials ===== */
+    .testimonials { background: var(--bg); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .testimonial-card {
+      background: var(--white);
+      padding: 36px;
+      border-bottom: 3px solid transparent;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .testimonial-card:hover {
+      border-bottom-color: var(--accent);
+      box-shadow: var(--shadow);
+    }
+    .testimonial-quote-icon {
+      font-size: 3.5rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: var(--accent);
+      line-height: 1; margin-bottom: 16px;
+      opacity: 0.45;
+    }
+    .testimonial-text {
+      font-size: 0.9rem; line-height: 1.9;
+      color: var(--text); margin-bottom: 28px;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 14px; }
+    .testimonial-avatar {
+      width: 44px; height: 44px;
+      background: var(--primary);
+      border: 1px solid var(--accent);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--accent); letter-spacing: 0.05em;
+    }
+    .testimonial-author-info .name {
+      font-size: 0.875rem; font-weight: 700; color: var(--text);
+    }
+    .testimonial-author-info .role {
+      font-size: 0.775rem; color: var(--text-muted); margin-top: 2px;
+    }
+
+    /* ===== FAQ Section ===== */
+    .faq { background: var(--white); }
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--border); }
+    .faq-question {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 28px 0; cursor: pointer; gap: 20px;
+    }
+    .faq-q-text {
+      font-size: 1rem; font-weight: 600;
+      color: var(--text); word-break: keep-all;
+    }
+    .faq-icon {
+      width: 32px; height: 32px;
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .faq-icon .material-icons {
+      font-size: 18px; color: var(--text-muted);
+      transition: transform 0.3s, color 0.2s;
+    }
+    .faq-item.open .faq-icon { background: var(--accent); border-color: var(--accent); }
+    .faq-item.open .faq-icon .material-icons { transform: rotate(45deg); color: var(--white); }
+    .faq-answer {
+      max-height: 0; overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.3s;
+    }
+    .faq-item.open .faq-answer { max-height: 300px; padding-bottom: 24px; }
+    .faq-answer p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.9; }
+
+    /* ===== CTA Section ===== */
+    .cta-section { background: var(--bg-dark); padding: 120px 0; }
+    .cta-box {
+      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      padding: 80px 64px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-box::before {
+      content: '';
+      position: absolute; top: -70px; right: -70px;
+      width: 320px; height: 320px;
+      background: rgba(184, 148, 74, 0.07); border-radius: 50%;
+    }
+    .cta-box::after {
+      content: '';
+      position: absolute; bottom: -90px; left: -90px;
+      width: 360px; height: 360px;
+      background: rgba(42, 66, 115, 0.28); border-radius: 50%;
+    }
+    .cta-box-inner { position: relative; z-index: 1; }
+    .cta-box h2 {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      font-weight: 700; color: var(--white);
+      margin-bottom: 20px; margin-top: 8px;
+      word-break: keep-all;
+    }
+    .cta-box p {
+      color: rgba(255,255,255,0.68);
+      font-size: 1rem;
+      margin-bottom: 48px;
+      max-width: 500px;
+      margin-left: auto; margin-right: auto;
+      line-height: 1.95;
+    }
+    .cta-features {
+      display: flex; justify-content: center; gap: 40px;
+      margin-top: 40px; flex-wrap: wrap;
+    }
+    .cta-feature {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem; letter-spacing: 0.06em;
+      padding: 0 20px;
+      border-left: 1px solid rgba(184,148,74,0.3);
+    }
+    .cta-feature:first-child { border-left: none; padding-left: 0; }
+
+    /* ===== Footer ===== */
+    footer { background: var(--primary-dark); padding: 60px 0 36px; }
+    .footer-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
+    .footer-top {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      padding-bottom: 48px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      margin-bottom: 36px; flex-wrap: wrap; gap: 40px;
+    }
+    .footer-brand .nav-logo { display: block; margin-bottom: 16px; }
+    .footer-brand p {
+      font-size: 0.85rem; color: rgba(255,255,255,0.4);
+      max-width: 280px; line-height: 1.85;
+    }
+    .footer-links-group { display: flex; gap: 60px; flex-wrap: wrap; }
+    .footer-links-col h4 {
+      font-size: 0.72rem; letter-spacing: 0.22em;
+      color: var(--accent); text-transform: uppercase;
+      margin-bottom: 20px;
+      font-family: 'Cormorant Garamond', serif;
+    }
+    .footer-links-col ul { display: flex; flex-direction: column; gap: 10px; }
+    .footer-links-col a {
+      font-size: 0.85rem; color: rgba(255,255,255,0.45);
+      transition: color 0.2s;
+    }
+    .footer-links-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 16px;
+    }
+    .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
+
+    /* ===== Company Overview ===== */
+    .company { background: var(--bg); }
+    .company-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 80px;
+      align-items: start;
+    }
+    .company-table { width: 100%; border-collapse: collapse; }
+    .company-table tr { border-bottom: 1px solid var(--border); }
+    .company-table tr:first-child { border-top: 1px solid var(--border); }
+    .company-table th {
+      padding: 18px 24px 18px 0;
+      font-size: 0.875rem; font-weight: 700;
+      color: var(--text);
+      width: 140px; vertical-align: top;
+      white-space: nowrap; text-align: left;
+    }
+    .company-table td {
+      padding: 18px 0;
+      font-size: 0.9rem; color: var(--text-muted);
+      line-height: 1.75;
+    }
+    .company-side {
+      position: sticky; top: 100px;
+    }
+    .company-profile-box {
+      padding: 48px;
+      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+      color: var(--white);
+      margin-bottom: 24px;
+    }
+    .company-profile-box .profile-name {
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--white); margin-bottom: 8px;
+    }
+    .company-profile-box .profile-title {
+      font-size: 0.8rem; color: var(--accent);
+      letter-spacing: 0.12em; margin-bottom: 24px;
+    }
+    .company-profile-box .profile-message {
+      font-size: 0.9rem; line-height: 2.0;
+      color: rgba(255,255,255,0.75);
+      word-break: keep-all;
+    }
+    .company-qualifications {
+      display: flex; flex-direction: column; gap: 10px;
+      margin-top: 24px;
+    }
+    .company-qualification {
+      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      padding-left: 16px;
+      border-left: 2px solid var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 768px) {
+      section { padding: 64px 0; }
+      .section-inner { padding: 0 20px; }
+      #mainNav { padding: 16px 20px; }
+      #mainNav.scrolled { padding: 12px 20px; }
+      .nav-links, .nav-cta { display: none; }
+      .nav-hamburger { display: flex; }
+      .hero-inner { padding: 0 20px; }
+      .hero h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
+      .hero-sub { font-size: 0.95rem; }
+      .hero-scroll { margin-top: 64px; }
+      .problem-grid { grid-template-columns: 1fr; gap: 32px; }
+      .solution-steps { grid-template-columns: 1fr; gap: 0; }
+      .solution-step-arrow { display: none; }
+      .features-grid { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .testimonials-grid { grid-template-columns: 1fr; }
+      .cta-box { padding: 48px 24px; }
+      .cta-features { gap: 20px; }
+      .company-grid { grid-template-columns: 1fr; gap: 40px; }
+      .company-side { position: static; }
+      .company-table th { width: 110px; }
+      .company-profile-box { padding: 32px 24px; }
+      .footer-top { flex-direction: column; }
+      .footer-links-group { gap: 32px; }
+      .footer-bottom { flex-direction: column; text-align: center; }
+      .hero-cta-group { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-indicator" id="scrollBar"></div>
+
+  <!-- Navigation -->
+  <nav id="mainNav">
+    <a href="#" class="nav-logo">ELEV<span>ATE</span></a>
+    <ul class="nav-links">
+      <li><a href="#problem">課題</a></li>
+      <li><a href="#features">特徴</a></li>
+      <li><a href="#results">実績</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#company">会社概要</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">無料相談</a>
+    <div class="nav-hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-inner">
+      <div class="hero-label fi">
+        <span class="hero-label-line"></span>
+        <span class="hero-label-text">社会保険労務士事務所</span>
+      </div>
+      <h1 class="fi delay-1">従業員を守り、<br>職場の土台を<br><span class="accent-gold">しっかり固める。</span></h1>
+      <p class="hero-sub fi delay-2">労務相談・就業規則・社会保険手続きから社員研修まで。経営者と従業員の双方が安心して働ける職場環境づくりを、社会保険労務士として一貫してサポートします。</p>
+      <div class="hero-cta-group fi delay-3">
+        <a href="#contact" class="btn-primary">無料相談を予約する</a>
+        <a href="#results" class="btn-outline">導入実績を見る</a>
+      </div>
+      <div class="hero-scroll fi delay-4">
+        <span class="hero-scroll-line"></span>
+        <span>Scroll</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Hero to Problem -->
+  <div class="wave" style="background: linear-gradient(135deg, #0D1F36 0%, #1B2D4F 55%, #2A4273 100%);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,10 1440,40 L1440,80 L0,80 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
+  <!-- Problem -->
+  <section class="problem" id="problem">
+    <div class="section-inner">
+      <div class="problem-grid">
+        <div>
+          <p class="section-eyebrow fi">Problem</p>
+          <h2 class="section-title fi delay-1">こんなお悩みは<br><span class="accent">ありませんか？</span></h2>
+          <p class="section-lead fi delay-2">多くの企業が「研修を実施しているのに、現場での変化が見えない」という課題を抱えています。</p>
+          <div class="problem-list">
+            <div class="problem-item fi delay-2">
+              <div class="problem-item-text">
+                <h4>研修効果が現場に活かされない</h4>
+                <p>受講直後は意欲的でも、日常業務に戻ると元の行動パターンに戻ってしまう。</p>
+              </div>
+            </div>
+            <div class="problem-item fi delay-3">
+              <div class="problem-item-text">
+                <h4>コストをかけても効果が測れない</h4>
+                <p>研修費用を投じても、ROIや具体的な変化を数値で把握できていない。</p>
+              </div>
+            </div>
+            <div class="problem-item fi delay-4">
+              <div class="problem-item-text">
+                <h4>一過性のモチベーションで終わる</h4>
+                <p>受講後のフォローがなく、時間が経つとモチベーションが自然と低下してしまう。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="problem-highlight fi delay-3">
+          <blockquote>「研修後も何も変わらない」という声を、私たちは聞き続けてきました。その根本にあるのは、知識偏重の設計です。</blockquote>
+          <div class="problem-highlight-stat">
+            <div>
+              <div class="num">67<span style="font-size:1.2rem;">%</span></div>
+              <div class="label">研修内容が実務に<br>活かせていない企業</div>
+            </div>
+            <div>
+              <div class="num">72<span style="font-size:1.2rem;">%</span></div>
+              <div class="label">研修効果を測定<br>できていない企業</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Problem to Solution -->
+  <div class="wave" style="background: var(--white);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#F7F5F0"/>
+    </svg>
+  </div>
+
+  <!-- Solution -->
+  <section class="solution" id="solution">
+    <div class="section-inner">
+      <div class="section-header center fi">
+        <p class="section-eyebrow">Our Approach</p>
+        <h2 class="section-title">行動変容を起こす<span class="accent">3つのステップ</span></h2>
+        <p class="section-lead">知識を習得するだけでなく、現場で「使える」状態にするための設計。それが私たちのアプローチです。</p>
+      </div>
+      <div class="solution-steps">
+        <div class="solution-step fi delay-1">
+          <div class="step-number">01</div>
+          <div class="step-icon"><span class="material-icons">search</span></div>
+          <h3>現状診断・課題設計</h3>
+          <p>ヒアリングと組織診断を通じて、貴社固有の課題を特定。汎用的な研修ではなく、課題に直結したプログラムを設計します。</p>
+          <div class="solution-step-arrow"><span class="material-icons">arrow_forward</span></div>
+        </div>
+        <div class="solution-step fi delay-2">
+          <div class="step-number">02</div>
+          <div class="step-icon"><span class="material-icons">groups</span></div>
+          <h3>アクションラーニング実施</h3>
+          <p>実際の業務課題を題材にした体験型プログラムで、受講者が主体的に考え、行動する力を育みます。</p>
+          <div class="solution-step-arrow"><span class="material-icons">arrow_forward</span></div>
+        </div>
+        <div class="solution-step fi delay-3">
+          <div class="step-number">03</div>
+          <div class="step-icon"><span class="material-icons">insights</span></div>
+          <h3>継続フォローと効果測定</h3>
+          <p>研修後3〜6ヶ月の継続フォローで定着を支援。定量・定性の両面から効果を可視化し、次のアクションに繋げます。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Solution to Features -->
+  <div class="wave" style="background: var(--bg);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
+  <!-- Features -->
+  <section class="features" id="features">
+    <div class="section-inner">
+      <div class="section-header fi">
+        <p class="section-eyebrow">Features</p>
+        <h2 class="section-title">選ばれる<span class="accent">3つの理由</span></h2>
+        <p class="section-lead">導入企業から最も評価されている、ELEVATEならではの強みをご紹介します。</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fi delay-1">
+          <div class="feature-icon"><span class="material-icons">tune</span></div>
+          <h3>完全カスタマイズ設計</h3>
+          <p>業種・規模・現状の課題に応じて、プログラムをゼロから設計します。パッケージ型の研修では拾いきれない、貴社固有のニーズに応えます。</p>
+        </div>
+        <div class="feature-card fi delay-2">
+          <div class="feature-icon"><span class="material-icons">psychology</span></div>
+          <h3>アクションラーニング手法</h3>
+          <p>「聞いて学ぶ」から「やって学ぶ」へ。実際の業務課題を教材に、チームで考え・動くプロセスを通じて、確かな行動変容を実現します。</p>
+        </div>
+        <div class="feature-card fi delay-3">
+          <div class="feature-icon"><span class="material-icons">bar_chart</span></div>
+          <h3>効果測定と継続サポート</h3>
+          <p>研修後も終わりではありません。KPI設定・定期レポート・フォローセッションで、現場への定着まで伴走します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Results -->
+  <section class="results" id="results">
+    <div class="section-inner">
+      <div class="section-header center fi">
+        <p class="section-eyebrow">Results</p>
+        <h2 class="section-title" style="color:var(--white);">数字が証明する<span style="color:var(--accent);">導入実績</span></h2>
+        <p class="section-lead" style="margin:0 auto; max-width:560px;">大手製造業から中堅サービス業まで、様々な業種の人材育成を支援してきた実績です。</p>
+      </div>
+      <div class="stats-grid">
+        <div class="stat fi delay-1">
+          <div class="stat-num">150<span>+</span></div>
+          <div class="stat-label">累計導入企業数</div>
+        </div>
+        <div class="stat fi delay-2">
+          <div class="stat-num">93<span>%</span></div>
+          <div class="stat-label">受講者満足度</div>
+        </div>
+        <div class="stat fi delay-3">
+          <div class="stat-num">3<span>ヶ月</span></div>
+          <div class="stat-label">平均で変化を実感</div>
+        </div>
+        <div class="stat fi delay-4">
+          <div class="stat-num">8<span>年</span></div>
+          <div class="stat-label">サービス提供実績</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Results to Testimonials -->
+  <div class="wave" style="background: linear-gradient(135deg, #0D1F36 0%, #1B2D4F 100%);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,0 720,80 1080,40 C1260,20 1380,60 1440,40 L1440,80 L0,80 Z" fill="#F7F5F0"/>
+    </svg>
+  </div>
+
+  <!-- Testimonials -->
+  <section class="testimonials" id="testimonials">
+    <div class="section-inner">
+      <div class="section-header center fi">
+        <p class="section-eyebrow">Testimonials</p>
+        <h2 class="section-title">導入企業の<span class="accent">ご担当者様の声</span></h2>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fi delay-1">
+          <div class="testimonial-quote-icon">"</div>
+          <p class="testimonial-text">これまで複数社の研修を試しましたが、現場に変化が生まれたのはELEVATEが初めてでした。課題設計の段階から丁寧に関わってくださり、研修が「自分ごと」として機能しました。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">T.M</div>
+            <div class="testimonial-author-info">
+              <div class="name">人事部長 T.M 様</div>
+              <div class="role">製造業 / 従業員300名</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fi delay-2">
+          <div class="testimonial-quote-icon">"</div>
+          <p class="testimonial-text">管理職研修を依頼しましたが、研修後のフォローが充実していて驚きました。3ヶ月後のアンケートで、チームの雰囲気が変わったという声が多数上がりました。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">K.A</div>
+            <div class="testimonial-author-info">
+              <div class="name">代表取締役 K.A 様</div>
+              <div class="role">IT企業 / 従業員80名</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fi delay-3">
+          <div class="testimonial-quote-icon">"</div>
+          <p class="testimonial-text">効果測定のレポートが非常にわかりやすく、経営層への報告資料としてもそのまま活用できました。数字で研修の価値を示せたことで、次年度の予算確保もスムーズでした。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">Y.S</div>
+            <div class="testimonial-author-info">
+              <div class="name">HR マネージャー Y.S 様</div>
+              <div class="role">サービス業 / 従業員150名</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Testimonials to FAQ -->
+  <div class="wave" style="background: var(--bg);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C360,80 720,0 1080,50 C1200,70 1360,20 1440,40 L1440,80 L0,80 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="section-inner">
+      <div class="section-header center fi">
+        <p class="section-eyebrow">FAQ</p>
+        <h2 class="section-title">よくある<span class="accent">ご質問</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item fi">
+          <div class="faq-question">
+            <span class="faq-q-text">研修の対象人数に上限・下限はありますか？</span>
+            <div class="faq-icon"><span class="material-icons">add</span></div>
+          </div>
+          <div class="faq-answer">
+            <p>対象人数は5名から500名まで対応可能です。少人数のマネージャー向けプログラムから、全社員を対象とした大規模研修まで、柔軟に設計いたします。</p>
+          </div>
+        </div>
+        <div class="faq-item fi delay-1">
+          <div class="faq-question">
+            <span class="faq-q-text">研修のテーマや内容はカスタマイズできますか？</span>
+            <div class="faq-icon"><span class="material-icons">add</span></div>
+          </div>
+          <div class="faq-answer">
+            <p>すべてのプログラムは貴社の課題・目標に合わせてカスタマイズします。初回のヒアリングを通じて現状を把握し、最適な研修設計をご提案します。</p>
+          </div>
+        </div>
+        <div class="faq-item fi delay-2">
+          <div class="faq-question">
+            <span class="faq-q-text">オンラインと対面、どちらに対応していますか？</span>
+            <div class="faq-icon"><span class="material-icons">add</span></div>
+          </div>
+          <div class="faq-answer">
+            <p>対面・オンライン・ハイブリッドのいずれにも対応しています。全国どこからでもご参加いただけます。</p>
+          </div>
+        </div>
+        <div class="faq-item fi delay-3">
+          <div class="faq-question">
+            <span class="faq-q-text">費用の目安はどのくらいですか？</span>
+            <div class="faq-icon"><span class="material-icons">add</span></div>
+          </div>
+          <div class="faq-answer">
+            <p>プログラムの内容・期間・人数によって異なります。まずは無料相談にてご要望をお聞かせください。最適なプランをご提案いたします。</p>
+          </div>
+        </div>
+        <div class="faq-item fi delay-4">
+          <div class="faq-question">
+            <span class="faq-q-text">まず相談だけでも大丈夫ですか？</span>
+            <div class="faq-icon"><span class="material-icons">add</span></div>
+          </div>
+          <div class="faq-answer">
+            <p>もちろんです。初回は30分の無料相談をご用意しています。「何から始めればいいかわからない」という段階でも、お気軽にお問い合わせください。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: FAQ to Company -->
+  <div class="wave" style="background: var(--white);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,0 720,80 1080,40 C1260,20 1380,60 1440,40 L1440,80 L0,80 Z" fill="#F7F5F0"/>
+    </svg>
+  </div>
+
+  <!-- Company Overview -->
+  <section class="company" id="company">
+    <div class="section-inner">
+      <div class="section-header fi">
+        <p class="section-eyebrow">Company</p>
+        <h2 class="section-title">会社<span class="accent">概要</span></h2>
+      </div>
+      <div class="company-grid">
+        <div class="company-side fi delay-1">
+          <div class="company-profile-box">
+            <div class="profile-title">代表 / 社会保険労務士</div>
+            <div class="profile-name">加藤 あゆみ</div>
+            <p class="profile-message">「法律を武器に、人と会社を守りたい」という思いで開業しました。難しい労務の話をできるだけわかりやすく、経営者の方が安心して前に進めるよう、伴走してまいります。</p>
+            <div class="company-qualifications">
+              <div class="company-qualification">社会保険労務士</div>
+              <div class="company-qualification">キャリアコンサルタント</div>
+            </div>
+          </div>
+        </div>
+        <div class="fi delay-2">
+          <table class="company-table">
+            <tr>
+              <th>事務所名</th>
+              <td>あゆ実社労士事務所</td>
+            </tr>
+            <tr>
+              <th>代表者</th>
+              <td>加藤 あゆみ</td>
+            </tr>
+            <tr>
+              <th>設立</th>
+              <td>●●年●月</td>
+            </tr>
+            <tr>
+              <th>所在地</th>
+              <td>〒●●●-●●●●<br>●●県●●市●●●●</td>
+            </tr>
+            <tr>
+              <th>TEL</th>
+              <td>●●-●●●●-●●●●</td>
+            </tr>
+            <tr>
+              <th>E-mail</th>
+              <td>●●●@●●●.com</td>
+            </tr>
+            <tr>
+              <th>事業内容</th>
+              <td>
+                労務相談・就業規則の作成・見直し<br>
+                社会保険・雇用保険の手続き代行<br>
+                助成金申請サポート<br>
+                社員研修・人材育成プログラムの企画・実施<br>
+                AI活用・業務効率化支援
+              </td>
+            </tr>
+            <tr>
+              <th>加盟団体</th>
+              <td>●●社会保険労務士会</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Company to CTA -->
+  <div class="wave" style="background: var(--bg);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C360,80 720,0 1080,50 C1200,70 1360,20 1440,40 L1440,80 L0,80 Z" fill="#EDEAE1"/>
+    </svg>
+  </div>
+
+  <!-- CTA -->
+  <section class="cta-section" id="contact">
+    <div class="section-inner">
+      <div class="cta-box fi">
+        <div class="cta-box-inner">
+          <p class="section-eyebrow">Contact</p>
+          <h2>組織変革の第一歩を、<br>ここから始めましょう。</h2>
+          <p>まずは30分の無料相談から。貴社の課題をお聞かせください。最適なアプローチをご提案します。</p>
+          <a href="#" class="btn-primary">
+            <span class="material-icons">calendar_today</span>
+            無料相談を予約する
+          </a>
+          <div class="cta-features">
+            <div class="cta-feature">完全無料・30分</div>
+            <div class="cta-feature">オンライン対応</div>
+            <div class="cta-feature">しつこい営業なし</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <a href="#" class="nav-logo">ELEV<span>ATE</span></a>
+          <p>行動変容にフォーカスした企業研修・人材育成で、組織の持続的な成長を支援します。</p>
+        </div>
+        <div class="footer-links-group">
+          <div class="footer-links-col">
+            <h4>Service</h4>
+            <ul>
+              <li><a href="#">企業研修</a></li>
+              <li><a href="#">管理職研修</a></li>
+              <li><a href="#">新人研修</a></li>
+              <li><a href="#">効果測定</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Company</h4>
+            <ul>
+              <li><a href="#company">会社概要</a></li>
+              <li><a href="#">実績・事例</a></li>
+              <li><a href="#">メディア掲載</a></li>
+              <li><a href="#">採用情報</a></li>
+            </ul>
+          </div>
+          <div class="footer-links-col">
+            <h4>Legal</h4>
+            <ul>
+              <li><a href="#">プライバシーポリシー</a></li>
+              <li><a href="#">利用規約</a></li>
+              <li><a href="#">お問い合わせ</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2026 ELEVATE. All rights reserved.</p>
+        <p>企業研修・人材育成 | ELEVATE</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll Progress Bar
+    const scrollBar = document.getElementById('scrollBar');
+    window.addEventListener('scroll', () => {
+      const scrolled = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+      scrollBar.style.width = scrolled + '%';
+    }, { passive: true });
+
+    // Nav scrolled state
+    const mainNav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => {
+      mainNav.classList.toggle('scrolled', window.scrollY > 40);
+    }, { passive: true });
+
+    // Scroll Animation (Intersection Observer)
+    document.addEventListener('DOMContentLoaded', () => {
+      const items = Array.from(document.querySelectorAll('.fi'));
+      const show = el => el.classList.add('visible');
+      if (!('IntersectionObserver' in window)) { items.forEach(show); return; }
+      const io = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) { show(entry.target); observer.unobserve(entry.target); }
+        });
+      }, { threshold: 0.06 });
+      items.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight * 0.92) show(el);
+        else io.observe(el);
+      });
+    });
+
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(q => {
+      q.addEventListener('click', () => {
+        const item = q.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+        document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+  </script>
+</body>
+</html>
