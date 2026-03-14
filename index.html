@@ -31,7 +31,7 @@
 
     /* ===== Reset ===== */
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; overflow-x: hidden; }
     body {
       font-family: 'Noto Sans JP', sans-serif;
       background: var(--bg);
@@ -751,6 +751,7 @@
       .company-profile-box { padding: 32px 24px; }
       .company-side { max-width: 360px; margin-left: auto; margin-right: auto; }
       .company-profile-photo-wrap { margin: 24px auto 0; max-width: 240px; }
+      .company-profile-photo-wrap::before { display: none; }
       .company-profile-photo { aspect-ratio: 3 / 4; }
       .footer-top { flex-direction: column; }
       .footer-links-group { gap: 32px; }
@@ -1038,7 +1039,7 @@
             <div class="company-profile-body">
               <div class="profile-title">代表 / 社会保険労務士</div>
               <div class="profile-name">加藤 あゆみ</div>
-              <p class="profile-message">「法律を武器に、人と会社を守りたい」という思いで開業しました。難しい労務の話をできるだけわかりやすく、経営者の方が安心して前に進めるよう、伴走してまいります。</p>
+              <p class="profile-message">IT企業の人事部にて人材育成・キャリア支援業務に従事。採用、人事制度、社員研修など人事領域の実務を経験。<br><br>社会保険労務士として独立後は、労務相談、就業規則整備、助成金申請支援、人材育成支援に加え、AIを活用した業務効率化支援にも取り組んでいる。</p>
               <div class="company-qualifications">
                 <div class="company-qualification">社会保険労務士</div>
                 <div class="company-qualification">キャリアコンサルタント</div>
