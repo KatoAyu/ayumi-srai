@@ -598,6 +598,53 @@
     }
     .footer-bottom p { font-size: 0.78rem; color: rgba(255,255,255,0.28); }
 
+    /* ===== Media Section ===== */
+    .media { background: var(--white); }
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+    .media-card {
+      display: flex; flex-direction: column;
+      padding: 32px 28px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      transition: box-shadow 0.3s, transform 0.3s;
+      position: relative;
+    }
+    .media-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-light));
+      transform: scaleX(0);
+      transition: transform 0.3s;
+    }
+    .media-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-4px); }
+    .media-card:hover::before { transform: scaleX(1); }
+    .media-card-source {
+      font-size: 0.72rem; letter-spacing: 0.18em;
+      color: var(--accent); text-transform: uppercase;
+      font-family: 'Cormorant Garamond', serif;
+      margin-bottom: 12px;
+    }
+    .media-card-title {
+      font-size: 0.95rem; font-weight: 600;
+      color: var(--text); line-height: 1.7;
+      flex: 1; word-break: keep-all;
+    }
+    .media-card-date {
+      font-size: 0.78rem; color: var(--text-muted);
+      margin-top: 20px; letter-spacing: 0.04em;
+    }
+    .media-loading {
+      text-align: center; color: var(--text-muted);
+      font-size: 0.9rem; padding: 40px 0;
+    }
+    @media (max-width: 768px) {
+      .media-grid { grid-template-columns: 1fr; }
+    }
+
     /* ===== Company Overview ===== */
     .company { background: var(--bg); }
     .company-grid {
@@ -720,6 +767,7 @@
     <ul class="nav-links">
       <li><a href="#problem">課題</a></li>
       <li><a href="#features">特徴</a></li>
+      <li><a href="#media">メディア</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#company">事務所概要</a></li>
     </ul>
@@ -878,6 +926,34 @@
       </div>
     </div>
   </section>
+
+  <!-- Wave: Features to Media -->
+  <div class="wave" style="background: var(--white);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#F7F5F0"/>
+    </svg>
+  </div>
+
+  <!-- Media -->
+  <section class="media" id="media" style="background:var(--bg);">
+    <div class="section-inner">
+      <div class="section-header fi">
+        <p class="section-eyebrow">Media</p>
+        <h2 class="section-title">執筆<span class="accent">メディア</span></h2>
+        <p class="section-lead">社会保険・労務・キャリアをテーマに、専門家として記事を執筆しています。</p>
+      </div>
+      <div class="media-grid" id="mediaGrid">
+        <p class="media-loading">読み込み中...</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Media to FAQ -->
+  <div class="wave" style="background: var(--bg);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C360,80 720,0 1080,50 C1200,70 1360,20 1440,40 L1440,80 L0,80 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
 
   <!-- FAQ -->
   <section class="faq" id="faq">
@@ -1105,6 +1181,39 @@
         else io.observe(el);
       });
     });
+
+    // Media: Google Sheets CSV fetch
+    (async () => {
+      const SHEET_ID = '17DOiCDeFi_RQFJajGkcud0Hn-3xeoDNB2cJJ0dN1u_o';
+      const url = `https://docs.google.com/spreadsheets/d/${SHEET_ID}/export?format=csv&gid=0`;
+      const grid = document.getElementById('mediaGrid');
+      try {
+        const res = await fetch(url);
+        const text = await res.text();
+        const rows = text.trim().split('\n').slice(1); // skip header
+        if (!rows.length || !rows[0]) { grid.innerHTML = '<p class="media-loading">記事はまだありません。</p>'; return; }
+        grid.innerHTML = rows.map((row, i) => {
+          const cols = row.match(/(".*?"|[^,]+)(?=,|$)/g) || row.split(',');
+          const clean = s => (s || '').replace(/^"|"$/g, '').trim();
+          const title = clean(cols[0]);
+          const url   = clean(cols[1]);
+          const date  = clean(cols[2]);
+          if (!title || !url) return '';
+          return `<a href="${url}" target="_blank" rel="noopener" class="media-card fi delay-${(i % 3) + 1}">
+            <div class="media-card-source">TRILL</div>
+            <div class="media-card-title">${title}</div>
+            ${date ? `<div class="media-card-date">${date}</div>` : ''}
+          </a>`;
+        }).join('');
+        // re-trigger scroll animation for new elements
+        document.querySelectorAll('.media-card.fi').forEach(el => {
+          const rect = el.getBoundingClientRect();
+          if (rect.top < window.innerHeight * 0.92) el.classList.add('visible');
+        });
+      } catch(e) {
+        grid.innerHTML = '<p class="media-loading">記事の読み込みに失敗しました。</p>';
+      }
+    })();
 
     // FAQ Accordion
     document.querySelectorAll('.faq-question').forEach(q => {
