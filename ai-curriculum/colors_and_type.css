@@ -1,0 +1,276 @@
+/* ==========================================================================
+   Jobspark Design System — Foundations
+   働くことを華やかに — Make work brilliant.
+   ========================================================================== */
+
+/* Webfonts — Noto family covers JP + EN with excellent bilingual harmony */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&display=swap');
+
+:root {
+  /* ------------------------------------------------------------------
+     BRAND COLORS — the five fixed roles
+     ------------------------------------------------------------------ */
+  --navigator-blue:    #8FB9D6;  /* 思考・知性 — headings, emphasis */
+  --warm-beige:        #F3E6D4;  /* 安心・温度 — backgrounds */
+  --starlight-gold:    #F2C35D;  /* 可能性 — key callouts */
+  --soft-orbit-blue:   #D9E9F4;  /* 整理 — diagram fills */
+  --deep-cocoa:        #5A3D2B;  /* 信頼 — body text */
+
+  /* Tonal ramps — derived from the five roles for UI flexibility.
+     Never invent new hues; only lighten/darken the fixed five. */
+
+  /* Navigator Blue ramp — deepened for better contrast; base kept at 400 */
+  --blue-50:  #EEF4F9;
+  --blue-100: #DCE9F2;
+  --blue-200: #BDD4E5;
+  --blue-300: #9EBFD6;
+  --blue-400: #8FB9D6;  /* = navigator-blue */
+  --blue-500: #5E93B8;
+  --blue-600: #3E7499;
+  --blue-700: #2A587A;
+  --blue-800: #1F4360;
+
+  /* Beige / surface ramp */
+  --beige-50:  #FDF9F2;  /* lightest surface */
+  --beige-100: #FAF2E4;
+  --beige-200: #F3E6D4;  /* = warm-beige */
+  --beige-300: #E8D5B8;
+  --beige-400: #D9BE94;
+
+  /* Gold ramp */
+  --gold-300: #F7D68A;
+  --gold-400: #F2C35D;  /* = starlight-gold */
+  --gold-500: #E0A93C;
+  --gold-600: #B8872A;
+
+  /* Cocoa ramp */
+  --cocoa-300: #A4856E;
+  --cocoa-400: #7C5B44;
+  --cocoa-500: #5A3D2B;  /* = deep-cocoa */
+  --cocoa-600: #432B1E;
+  --cocoa-700: #2E1C12;
+
+  /* ------------------------------------------------------------------
+     SEMANTIC COLOR TOKENS
+     Use these in components; never hardcode hex values.
+     ------------------------------------------------------------------ */
+  --bg-primary:    var(--beige-200);   /* main page background */
+  --bg-elevated:   var(--beige-50);    /* cards, panels */
+  --bg-muted:      var(--beige-100);   /* subtle sections */
+  --bg-diagram:    var(--soft-orbit-blue); /* figure/diagram fills */
+  --bg-inverse:    var(--cocoa-500);   /* dark sections */
+
+  --fg-primary:    var(--cocoa-500);   /* body text */
+  --fg-heading:    var(--cocoa-600);   /* headings — cocoa primary for gravitas */
+  --fg-heading-strong: var(--cocoa-700);/* strongest heading */
+  --fg-heading-blue: var(--blue-700);  /* blue heading variant (diagrams, section labels) */
+  --fg-muted:      var(--cocoa-400);   /* secondary text */
+  --fg-subtle:     var(--cocoa-300);   /* captions, meta */
+  --fg-accent:     var(--gold-500);    /* key emphasis */
+  --fg-on-dark:    var(--beige-100);   /* text on cocoa backgrounds */
+  --fg-on-gold:    var(--cocoa-600);   /* text on gold backgrounds */
+
+  --border-subtle: rgba(90, 61, 43, 0.12); /* cocoa @ 12% */
+  --border-soft:   rgba(90, 61, 43, 0.20);
+  --border-strong: var(--cocoa-500);
+  --border-blue:   var(--blue-200);
+
+  --accent-gold:   var(--starlight-gold);
+  --accent-blue:   var(--navigator-blue);
+
+  /* ------------------------------------------------------------------
+     GRADIENT SYSTEM — five patterns, each with a role
+     ------------------------------------------------------------------ */
+  /* 1. Hero — signature vertical. Cover, openers. */
+  --gradient-hero: linear-gradient(180deg, #8FB9D6 0%, #D9E9F4 42%, #FFF6E8 100%);
+  /* 2. Hero diagonal — more dynamic. Product heroes, chapter pages. */
+  --gradient-hero-diagonal: linear-gradient(155deg, #8FB9D6 0%, #D9E9F4 40%, #FFF6E8 100%);
+  /* 3. Soft — cards, quiet backgrounds. */
+  --gradient-soft: linear-gradient(180deg, #D9E9F4 0%, #FFF6E8 100%);
+  /* 4. Gold — hero gold for key CTAs and accent cards. Cleaner highlight. */
+  --gradient-gold: linear-gradient(145deg, #FDE9B8 0%, #F2C35D 45%, #D9A838 100%);
+  /* 5. Cocoa — reverse / dark sections, adds depth vs flat cocoa. */
+  --gradient-cocoa: linear-gradient(180deg, #2E1C12 0%, #5A3D2B 100%);
+  /* 6. Dawn — gold + blue blend, cleaner midpoint. */
+  --gradient-dawn: linear-gradient(155deg, #F2C35D 0%, #FFE8B8 28%, #F8EFE0 52%, #D9E9F4 78%, #8FB9D6 100%);
+  /* 7. Ember — deep cocoa to warm gold, no muddy midtone. */
+  --gradient-ember: linear-gradient(180deg, #3A2518 0%, #5A3D2B 55%, #8F5E2E 100%);
+
+  /* ------------------------------------------------------------------
+     TYPOGRAPHY — serif for dignity, sans for clarity
+     ------------------------------------------------------------------ */
+  --font-serif-jp: 'Noto Serif JP', 'Hiragino Mincho ProN', 'Yu Mincho', serif;
+  --font-sans-jp:  'Noto Sans JP', 'Hiragino Sans', 'Yu Gothic', system-ui, sans-serif;
+  --font-display:  'Cormorant Garamond', 'Noto Serif JP', 'Hiragino Mincho ProN', serif;
+  --font-mono:     'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  /* Weights */
+  --fw-light:     300;
+  --fw-regular:   400;
+  --fw-medium:    500;
+  --fw-semibold:  600;
+  --fw-bold:      700;
+
+  /* Type scale — modular, generous for Japanese readability */
+  --fs-display-xl: 72px;   /* hero only */
+  --fs-display-lg: 56px;
+  --fs-display:    44px;
+  --fs-h1:         36px;
+  --fs-h2:         28px;
+  --fs-h3:         22px;
+  --fs-h4:         18px;
+  --fs-body-lg:    17px;
+  --fs-body:       15px;
+  --fs-small:      13px;
+  --fs-caption:    12px;
+
+  /* Line height — Japanese text needs 1.7-1.9 for comfort */
+  --lh-tight:   1.2;
+  --lh-snug:    1.4;
+  --lh-normal:  1.7;
+  --lh-relaxed: 1.9;
+
+  /* Letter spacing — JP wants slight positive tracking */
+  --ls-tight:  -0.01em;
+  --ls-normal: 0;
+  --ls-wide:   0.04em;
+  --ls-wider:  0.08em;   /* used for all-caps labels, button text */
+
+  /* ------------------------------------------------------------------
+     SPACING — 4px base, generous (Japanese design breathes)
+     ------------------------------------------------------------------ */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ------------------------------------------------------------------
+     RADII — soft but not childish
+     ------------------------------------------------------------------ */
+  --radius-sm:   4px;
+  --radius-md:   8px;
+  --radius-lg:   12px;
+  --radius-xl:   20px;
+  --radius-2xl:  28px;
+  --radius-pill: 999px;
+
+  /* ------------------------------------------------------------------
+     SHADOWS — warm, soft, cocoa-tinted (not neutral gray)
+     ------------------------------------------------------------------ */
+  --shadow-xs: 0 1px 2px rgba(90, 61, 43, 0.06);
+  --shadow-sm: 0 2px 6px rgba(90, 61, 43, 0.08);
+  --shadow-md: 0 6px 18px rgba(90, 61, 43, 0.10);
+  --shadow-lg: 0 16px 40px rgba(90, 61, 43, 0.12);
+  --shadow-xl: 0 28px 64px rgba(90, 61, 43, 0.14);
+
+  /* Inner highlight — for pressed / recessed states */
+  --shadow-inset: inset 0 1px 2px rgba(90, 61, 43, 0.08);
+
+  /* ------------------------------------------------------------------
+     MOTION
+     ------------------------------------------------------------------ */
+  --ease-out:  cubic-bezier(0.22, 0.61, 0.36, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --duration-fast: 120ms;
+  --duration:      200ms;
+  --duration-slow: 400ms;
+}
+
+/* ==========================================================================
+   SEMANTIC ELEMENTS — apply tokens to base tags so rich content "just works"
+   ========================================================================== */
+
+html, body {
+  background: var(--bg-primary);
+  color: var(--fg-primary);
+  font-family: var(--font-sans-jp);
+  font-size: var(--fs-body);
+  line-height: var(--lh-normal);
+  letter-spacing: var(--ls-normal);
+  font-feature-settings: "palt";  /* proportional Japanese kerning */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif-jp);
+  color: var(--fg-heading); /* cocoa-600 */
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-tight);
+  line-height: var(--lh-snug);
+  text-wrap: balance;
+  margin: 0;
+}
+
+h1 { font-size: var(--fs-h1); font-weight: var(--fw-semibold); }
+h2 { font-size: var(--fs-h2); font-weight: var(--fw-medium); }
+h3 { font-size: var(--fs-h3); font-weight: var(--fw-medium); }
+h4 { font-size: var(--fs-h4); font-weight: var(--fw-medium); }
+
+p {
+  font-size: var(--fs-body);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-primary);
+  text-wrap: pretty;
+  margin: 0 0 var(--space-4) 0;
+}
+
+strong, b {
+  font-weight: var(--fw-semibold);
+  color: var(--fg-heading-strong);
+}
+
+em {
+  font-style: italic;
+  color: var(--fg-accent);
+  font-weight: var(--fw-medium);
+}
+
+small {
+  font-size: var(--fs-small);
+  color: var(--fg-muted);
+}
+
+code, pre {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--beige-100);
+  padding: 2px 6px;
+  border-radius: var(--radius-sm);
+  color: var(--cocoa-600);
+}
+
+a {
+  color: var(--blue-600);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--duration) var(--ease-out);
+}
+a:hover { color: var(--blue-700); }
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--border-subtle);
+  margin: var(--space-5) 0;
+}
+
+/* Utility classes */
+.display { font-family: var(--font-display); font-weight: var(--fw-regular); font-style: italic; letter-spacing: var(--ls-tight); }
+.serif-jp { font-family: var(--font-serif-jp); }
+.sans-jp { font-family: var(--font-sans-jp); }
+.eyebrow {
+  font-family: var(--font-sans-jp);
+  font-size: var(--fs-caption);
+  font-weight: var(--fw-medium);
+  letter-spacing: var(--ls-wider);
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}

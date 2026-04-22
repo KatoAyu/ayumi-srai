@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<title>AI活用研修 カリキュラム提案 — Jobspark</title>
+<link rel="stylesheet" href="slides.css">
+<style>
+  html, body { margin: 0; background: #000; }
+
+  /* ====== Shared chrome ====== */
+  .chrome-logo { height: 24px; }
+  .slide-header { position: absolute; top: 48px; left: 96px; right: 96px; display: flex; align-items: center; justify-content: space-between; font-size: 15px; color: var(--fg-muted); letter-spacing: 0.08em; z-index: 2; }
+  .slide-header .chapter { font-family: var(--font-serif-jp); font-weight: 500; color: var(--fg-heading); letter-spacing: 0.14em; text-transform: uppercase; font-size: 13px; }
+  .slide-footer { position: absolute; bottom: 40px; left: 96px; right: 96px; display: flex; align-items: center; justify-content: space-between; font-family: var(--font-mono); font-size: 12px; color: var(--fg-muted); letter-spacing: 0.08em; z-index: 2; }
+  .slide-footer .num { color: var(--cocoa-600); font-weight: 600; }
+
+  .slide { padding: 88px 96px; }
+
+  .eyebrow-line { display: inline-flex; align-items: center; gap: 14px; font-size: 13px; font-weight: 500; letter-spacing: 0.14em; color: var(--blue-700); text-transform: uppercase; }
+  .eyebrow-line::before { content:''; width: 36px; height: 1px; background: var(--blue-500); }
+
+  /* ============================================================
+     1. COVER
+     ============================================================ */
+  .cover { background: linear-gradient(155deg, #8FB9D6 0%, #D9E9F4 40%, #FFF6E8 100%); display: flex; flex-direction: column; justify-content: space-between; padding: 80px 120px; }
+  .cover::after {
+    content: ''; position: absolute; top: 80px; right: 100px;
+    width: 340px; height: 340px;
+    background: radial-gradient(circle, rgba(242,195,93,0.55) 0%, rgba(242,195,93,0) 65%);
+    pointer-events: none;
+  }
+  .cover .mark-row { display: flex; align-items: center; gap: 18px; position: relative; z-index: 1; }
+  .cover .mark-row img { height: 48px; }
+  .cover .wordmark { font-family: var(--font-serif-jp); font-size: 22px; font-weight: 500; color: var(--cocoa-600); letter-spacing: 0.04em; }
+  .cover .body-wrap { position: relative; z-index: 1; }
+  .cover .eyebrow-jp { color: var(--cocoa-600); margin-bottom: 28px; font-size: 16px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; }
+  .cover h1 { font-size: 108px; line-height: 1.1; font-weight: 500; color: var(--cocoa-700); margin: 0; letter-spacing: -0.02em; font-family: var(--font-serif-jp); }
+  .cover h1 em {
+    font-family: var(--font-display); font-style: italic; font-weight: 500;
+    background: linear-gradient(145deg, #C68B2A 0%, #A06828 55%, #7A4F1C 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 2px 1px rgba(90,61,43,0.12));
+  }
+  .cover .tagline { margin-top: 36px; font-size: 28px; color: var(--cocoa-500); font-family: var(--font-serif-jp); font-weight: 400; letter-spacing: 0.04em; }
+  .cover .sub-en { margin-top: 8px; font-family: var(--font-display); font-style: italic; font-size: 24px; color: var(--gold-600); letter-spacing: 0.02em; }
+  .cover .meta { position: relative; z-index: 1; display: flex; justify-content: space-between; align-items: flex-end; font-family: var(--font-mono); font-size: 14px; color: var(--cocoa-500); letter-spacing: 0.08em; border-top: 1px solid rgba(90,61,43,0.25); padding-top: 20px; }
+  .cover .meta .label { display: block; font-size: 10px; letter-spacing: 0.18em; color: var(--cocoa-400); margin-bottom: 6px; text-transform: uppercase; }
+  .cover .course-tag { display: inline-block; margin-top: 14px; font-family: var(--font-sans-jp); font-size: 14px; color: var(--cocoa-600); padding: 8px 18px; border: 1px solid rgba(90,61,43,0.30); border-radius: 999px; letter-spacing: 0.06em; background: rgba(253,249,242,0.55); }
+
+  /* ============================================================
+     2. OVERVIEW — curriculum table
+     ============================================================ */
+  .overview { background: linear-gradient(180deg, #FFF6E8 0%, #F3E6D4 100%); display: flex; flex-direction: column; }
+  .overview .title-block { margin-top: 30px; }
+  .overview h2 { font-family: var(--font-serif-jp); font-size: 52px; font-weight: 500; color: var(--cocoa-700); line-height: 1.25; letter-spacing: -0.01em; margin: 14px 0 0; }
+  .overview h2 em { font-family: var(--font-display); font-style: italic;
+    background: linear-gradient(145deg, #D9A838 0%, #A06828 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .overview .lede { margin-top: 18px; font-size: 18px; line-height: 1.85; color: var(--cocoa-500); max-width: 1100px; }
+
+  .summary-pills { margin-top: 26px; display: flex; gap: 12px; flex-wrap: wrap; }
+  .summary-pills .pill { background: var(--beige-50); border: 1px solid rgba(90,61,43,0.12); border-radius: 999px; padding: 8px 18px; font-size: 14px; color: var(--cocoa-600); font-family: var(--font-mono); letter-spacing: 0.04em; }
+  .summary-pills .pill.gold { background: linear-gradient(145deg, #FDE9B8 0%, #F2C35D 100%); border-color: transparent; color: var(--cocoa-700); font-weight: 600; }
+
+  .curriculum-grid { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; }
+  .day-card { background: var(--beige-50); border-radius: 20px; padding: 36px 32px; border: 1px solid rgba(90,61,43,0.08); box-shadow: 0 6px 18px rgba(90,61,43,0.08); display: flex; flex-direction: column; gap: 16px; position: relative; }
+  .day-card .day-num { font-family: var(--font-display); font-style: italic; font-size: 22px; color: var(--gold-600); letter-spacing: 0.02em; }
+  .day-card .day-label { font-family: var(--font-serif-jp); font-size: 34px; font-weight: 500; color: var(--cocoa-700); line-height: 1.25; margin: -4px 0 0; }
+  .day-card .day-sub { font-size: 14px; color: var(--cocoa-400); font-family: var(--font-mono); letter-spacing: 0.06em; margin-top: 4px; }
+  .day-card .day-divider { height: 1px; background: var(--border-subtle); margin: 8px 0 4px; }
+  .day-card .day-topics { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
+  .day-card .day-topics li { display: flex; align-items: flex-start; gap: 10px; font-size: 16px; color: var(--cocoa-600); line-height: 1.7; }
+  .day-card .day-topics li::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue-500); margin-top: 10px; flex-shrink: 0; }
+  .day-card .custom-tag { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; font-family: var(--font-sans-jp); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: var(--cocoa-700); background: linear-gradient(145deg, #FDE9B8 0%, #F2C35D 100%); padding: 4px 12px; border-radius: 999px; text-transform: uppercase; }
+  .day-card.highlight { background: linear-gradient(180deg, #FDF9F2 0%, #F7EAD4 100%); border-color: rgba(242,195,93,0.35); }
+  .day-card.highlight .day-topics li::before { background: var(--gold-500); }
+
+  /* ============================================================
+     3. DAY 1-2 foundation
+     ============================================================ */
+  .foundation { background: var(--beige-200); display: flex; flex-direction: column; }
+  .foundation .title-block { margin-top: 30px; }
+  .foundation h2 { font-family: var(--font-serif-jp); font-size: 52px; font-weight: 500; color: var(--cocoa-700); line-height: 1.25; letter-spacing: -0.01em; margin: 14px 0 0; }
+  .foundation h2 em { font-family: var(--font-display); font-style: italic;
+    background: linear-gradient(145deg, #D9A838 0%, #A06828 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .foundation .lede { margin-top: 18px; font-size: 18px; line-height: 1.85; color: var(--cocoa-500); max-width: 1100px; }
+
+  .module-grid { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; }
+  .module-card { background: var(--beige-50); border-radius: 20px; padding: 32px; border: 1px solid rgba(90,61,43,0.08); box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 16px; }
+  .module-card .mod-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .module-card .mod-day { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.14em; color: var(--blue-700); text-transform: uppercase; }
+  .module-card .mod-latin { font-family: var(--font-display); font-style: italic; font-size: 20px; color: var(--gold-600); }
+  .module-card h3 { font-family: var(--font-serif-jp); font-size: 28px; font-weight: 500; color: var(--cocoa-700); margin: 0; line-height: 1.3; }
+  .module-card ul { list-style: none; padding: 0; margin: 4px 0 0; display: flex; flex-direction: column; gap: 10px; }
+  .module-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--cocoa-600); line-height: 1.75; }
+  .module-card li .chev { color: var(--blue-500); font-family: var(--font-mono); flex-shrink: 0; margin-top: 1px; }
+  .module-card li .exercise-tag { display: inline-block; font-size: 10px; font-weight: 600; letter-spacing: 0.1em; color: var(--cocoa-700); background: var(--gold-300); padding: 1px 8px; border-radius: 999px; margin-right: 6px; }
+
+  .goal-banner { margin-top: 28px; background: linear-gradient(155deg, #5A3D2B 0%, #432B1E 100%); color: var(--beige-100); padding: 20px 36px; border-radius: 16px; display: flex; align-items: center; gap: 24px; }
+  .goal-banner .goal-label { font-family: var(--font-sans-jp); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--gold-400); text-transform: uppercase; }
+  .goal-banner .goal-text { font-family: var(--font-serif-jp); font-size: 20px; color: var(--beige-100); font-weight: 400; letter-spacing: 0.02em; }
+  .goal-banner .divider-v { width: 1px; height: 32px; background: rgba(242,230,212,0.24); }
+
+  /* ============================================================
+     4-5. TIMETABLE slides
+     ============================================================ */
+  .timetable-slide { background: var(--beige-200); display: flex; flex-direction: column; }
+  .timetable-slide .title-row { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 30px; }
+  .timetable-slide .title-block { flex: 1; }
+  .timetable-slide h2 { font-family: var(--font-serif-jp); font-size: 46px; font-weight: 500; color: var(--cocoa-700); line-height: 1.25; letter-spacing: -0.01em; margin: 14px 0 0; }
+  .timetable-slide h2 em { font-family: var(--font-display); font-style: italic;
+    background: linear-gradient(145deg, #D9A838 0%, #A06828 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .timetable-slide .lede { margin-top: 14px; font-size: 17px; line-height: 1.85; color: var(--cocoa-500); max-width: 1200px; }
+  .custom-badge { display: inline-flex; align-items: center; gap: 8px; font-family: var(--font-sans-jp); font-size: 12px; font-weight: 600; letter-spacing: 0.16em; color: var(--cocoa-700); background: linear-gradient(145deg, #FDE9B8 0%, #F2C35D 100%); padding: 8px 18px; border-radius: 999px; text-transform: uppercase; box-shadow: 0 4px 12px rgba(217,168,56,0.25); }
+  .custom-badge::before { content: '✦'; color: var(--cocoa-600); font-size: 14px; }
+
+  .tt-wrap { margin-top: 36px; display: grid; grid-template-columns: 1.35fr 1fr; gap: 40px; flex: 1; }
+
+  .tt-table { display: flex; flex-direction: column; gap: 0; background: var(--beige-50); border-radius: 20px; padding: 8px 0; border: 1px solid rgba(90,61,43,0.08); box-shadow: var(--shadow-sm); }
+  .tt-row { display: grid; grid-template-columns: 110px 80px 1fr; gap: 20px; align-items: center; padding: 18px 28px; border-bottom: 1px solid var(--border-subtle); }
+  .tt-row:last-child { border-bottom: 0; }
+  .tt-row .tt-time { font-family: var(--font-mono); font-size: 15px; color: var(--cocoa-600); font-weight: 600; letter-spacing: 0.02em; }
+  .tt-row .tt-kind { font-family: var(--font-sans-jp); font-size: 10px; letter-spacing: 0.16em; color: var(--blue-700); text-transform: uppercase; font-weight: 600; display: inline-flex; align-items: center; gap: 6px; }
+  .tt-row .tt-kind::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--blue-400); }
+  .tt-row .tt-kind.demo::before { background: var(--blue-500); }
+  .tt-row .tt-kind.exercise::before { background: var(--gold-500); }
+  .tt-row .tt-kind.exercise { color: var(--gold-600); }
+  .tt-row .tt-kind.share::before { background: var(--cocoa-400); }
+  .tt-row .tt-kind.share { color: var(--cocoa-500); }
+  .tt-row .tt-kind.wrap::before { background: var(--cocoa-600); }
+  .tt-row .tt-kind.wrap { color: var(--cocoa-600); }
+  .tt-row .tt-body { font-size: 16px; color: var(--cocoa-700); line-height: 1.5; font-family: var(--font-sans-jp); font-weight: 400; }
+
+  .tt-side { display: flex; flex-direction: column; gap: 20px; }
+  .tt-card { background: var(--beige-50); border: 1px solid rgba(90,61,43,0.08); border-radius: 20px; padding: 28px 32px; box-shadow: var(--shadow-sm); }
+  .tt-card.dark { background: linear-gradient(155deg, #5A3D2B 0%, #432B1E 100%); border: 0; color: var(--beige-100); }
+  .tt-card .tt-card-label { font-family: var(--font-sans-jp); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--blue-700); text-transform: uppercase; margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+  .tt-card .tt-card-label::before { content: ''; width: 24px; height: 1px; background: var(--blue-500); }
+  .tt-card.dark .tt-card-label { color: var(--gold-400); }
+  .tt-card.dark .tt-card-label::before { background: var(--gold-500); }
+  .tt-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .tt-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 15px; color: var(--cocoa-600); line-height: 1.7; }
+  .tt-card li::before { content: '›'; color: var(--blue-600); flex-shrink: 0; font-weight: 600; }
+  .tt-card.dark li { color: var(--beige-100); }
+  .tt-card.dark li::before { color: var(--gold-400); }
+
+  .tt-themes { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .tt-theme { background: var(--beige-50); border: 1px solid rgba(90,61,43,0.10); border-radius: 14px; padding: 16px 18px; }
+  .tt-theme .diff { display: inline-block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; color: var(--cocoa-400); text-transform: uppercase; margin-bottom: 8px; }
+  .tt-theme .theme-title { font-family: var(--font-serif-jp); font-size: 16px; font-weight: 500; color: var(--cocoa-700); margin: 0 0 4px; line-height: 1.3; }
+  .tt-theme .theme-body { font-size: 13px; color: var(--cocoa-500); line-height: 1.6; margin: 0; }
+  .tt-theme .theme-tool { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: var(--blue-700); font-weight: 600; margin-top: 6px; display: block; }
+
+  /* ============================================================
+     6. PRICING
+     ============================================================ */
+  .pricing { background: linear-gradient(180deg, #FFF6E8 0%, #F3E6D4 100%); display: flex; flex-direction: column; }
+  .pricing h2 { font-family: var(--font-serif-jp); font-size: 52px; font-weight: 500; color: var(--cocoa-700); line-height: 1.25; letter-spacing: -0.01em; margin: 14px 0 0; }
+  .pricing h2 em { font-family: var(--font-display); font-style: italic;
+    background: linear-gradient(145deg, #D9A838 0%, #A06828 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .pricing .lede { margin-top: 18px; font-size: 18px; line-height: 1.85; color: var(--cocoa-500); max-width: 1200px; }
+  .pricing .sublede { margin-top: 6px; font-size: 14px; color: var(--cocoa-400); font-style: italic; }
+
+  .price-grid { margin-top: 40px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; flex: 1; }
+  .price-card { background: var(--beige-50); border: 1px solid rgba(90,61,43,0.08); border-radius: 20px; padding: 36px 32px; box-shadow: var(--shadow-sm); display: flex; flex-direction: column; gap: 18px; position: relative; }
+  .price-card .tool-head { display: flex; align-items: baseline; justify-content: space-between; }
+  .price-card .tool-name { font-family: var(--font-serif-jp); font-size: 26px; font-weight: 500; color: var(--cocoa-700); margin: 0; line-height: 1.2; }
+  .price-card .plan-tag { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--blue-700); text-transform: uppercase; font-weight: 600; }
+  .price-card.paid .plan-tag { color: var(--gold-600); }
+  .price-card .price-row { display: flex; align-items: baseline; gap: 6px; padding: 14px 0; border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); }
+  .price-card .price-val { font-family: var(--font-display); font-style: italic; font-size: 64px; font-weight: 500; color: var(--cocoa-700); line-height: 1; letter-spacing: -0.01em; }
+  .price-card .price-unit { font-family: var(--font-mono); font-size: 13px; color: var(--cocoa-400); letter-spacing: 0.06em; }
+  .price-card .price-aside { font-family: var(--font-mono); font-size: 11px; color: var(--cocoa-400); letter-spacing: 0.08em; margin-left: auto; }
+  .price-card ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 10px; }
+  .price-card li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--cocoa-600); line-height: 1.7; }
+  .price-card li::before { content: '›'; color: var(--blue-600); flex-shrink: 0; font-weight: 600; }
+  .price-card .in-training { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; font-family: var(--font-sans-jp); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; color: var(--blue-700); background: var(--soft-orbit-blue); padding: 4px 12px; border-radius: 999px; text-transform: uppercase; }
+  .price-card.paid { background: linear-gradient(180deg, #FDF9F2 0%, #F7EAD4 100%); border-color: rgba(242,195,93,0.30); }
+  .price-card.paid .price-val { background: linear-gradient(145deg, #D9A838 0%, #A06828 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .price-card.paid .reference-tag { display: inline-flex; align-items: center; gap: 6px; align-self: flex-start; font-family: var(--font-sans-jp); font-size: 10px; font-weight: 600; letter-spacing: 0.16em; color: var(--cocoa-700); background: linear-gradient(145deg, #FDE9B8 0%, #F2C35D 100%); padding: 4px 12px; border-radius: 999px; text-transform: uppercase; }
+
+  /* ============================================================
+     7. SECURITY / SWITCH TIMING
+     ============================================================ */
+  .security { background: var(--beige-200); display: flex; flex-direction: column; }
+  .security h2 { font-family: var(--font-serif-jp); font-size: 48px; font-weight: 500; color: var(--cocoa-700); line-height: 1.25; letter-spacing: -0.01em; margin: 14px 0 0; }
+  .security h2 em { font-family: var(--font-display); font-style: italic;
+    background: linear-gradient(145deg, #D9A838 0%, #A06828 100%);
+    -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .security .lede { margin-top: 16px; font-size: 17px; line-height: 1.85; color: var(--cocoa-500); max-width: 1200px; }
+  .security .note { margin-top: 6px; font-size: 13px; color: var(--cocoa-400); font-style: italic; }
+
+  .sig-stack { margin-top: 36px; display: flex; flex-direction: column; gap: 18px; flex: 1; }
+  .sig-row { background: var(--beige-50); border: 1px solid rgba(90,61,43,0.08); border-radius: 18px; padding: 28px 36px; box-shadow: var(--shadow-sm); display: grid; grid-template-columns: 220px 1fr auto 1.3fr; gap: 32px; align-items: center; }
+  .sig-row .sig-marker { display: flex; align-items: center; gap: 14px; }
+  .sig-row .sig-num { font-family: var(--font-display); font-style: italic; font-size: 52px; color: var(--blue-500); line-height: 1; font-weight: 500; }
+  .sig-row .sig-type { font-family: var(--font-sans-jp); font-size: 11px; font-weight: 600; letter-spacing: 0.18em; color: var(--blue-700); text-transform: uppercase; }
+  .sig-row .sig-type-jp { font-family: var(--font-serif-jp); font-size: 16px; color: var(--cocoa-600); font-weight: 500; margin-top: 2px; }
+  .sig-row .sig-title { font-family: var(--font-serif-jp); font-size: 22px; font-weight: 500; color: var(--cocoa-700); margin: 0; line-height: 1.35; }
+  .sig-row .sig-desc { font-size: 14px; color: var(--cocoa-500); margin: 6px 0 0; line-height: 1.65; }
+  .sig-row .judge { font-family: var(--font-sans-jp); font-size: 11px; font-weight: 600; letter-spacing: 0.14em; color: var(--gold-600); background: var(--gold-300); padding: 6px 14px; border-radius: 999px; text-transform: uppercase; white-space: nowrap; }
+  .sig-row .judge.required { color: var(--cocoa-100, var(--beige-100)); background: var(--cocoa-600); color: var(--beige-100); }
+  .sig-row .sig-action { font-size: 14px; color: var(--cocoa-600); line-height: 1.7; padding-left: 18px; border-left: 2px solid var(--gold-400); }
+  .sig-row .sig-action strong { color: var(--cocoa-700); }
+  .sig-row.security-row .sig-num { color: var(--cocoa-500); }
+  .sig-row.security-row .sig-type { color: var(--cocoa-500); }
+
+  /* Helper for light/dark divider */
+  .divider-dot { display: inline-block; width: 4px; height: 4px; border-radius: 50%; background: var(--cocoa-300); margin: 0 10px; vertical-align: middle; }
+
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+  <!-- ========== 1. COVER ========== -->
+  <section class="slide cover" data-label="Cover">
+    <div class="mark-row">
+      <img src="assets/logo-mark.svg" alt=""><span class="wordmark">Jobspark</span>
+    </div>
+    <div class="body-wrap">
+      <div class="eyebrow-jp">Proposal — AI Literacy Program</div>
+      <h1>AI活用研修<br><em>カリキュラム提案</em></h1>
+      <div class="tagline">事業展開等リスキリング支援コース対応</div>
+      <div class="sub-en">— Designed for your team, delivered in three days.</div>
+      <div class="course-tag">全3日間・12時間  |  カスタマイズ対応</div>
+    </div>
+    <div class="meta">
+      <div>
+        <span class="label">Proposal</span>
+        2026.04
+      </div>
+      <div>
+        <span class="label">For</span>
+        貴社ご提案用
+      </div>
+      <div style="text-align: right;">
+        <span class="label">Prepared by</span>
+        株式会社ジョブスパーク
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 2. OVERVIEW ========== -->
+  <section class="slide overview" data-label="Curriculum Overview">
+    <div class="slide-header">
+      <img src="assets/logo-mark.svg" class="chrome-logo">
+      <span class="chapter">01 / 全体像</span>
+    </div>
+
+    <div class="title-block">
+      <div class="eyebrow-line">Curriculum Overview</div>
+      <h2>研修カリキュラム<br><em>全体像</em></h2>
+      <p class="lede">Day1で生成AIの基礎とプロンプト設計を固め、Day2〜3でGemini・NotebookLM・Canvasを使った業務活用へ。各日4時間・合計12時間の伴走型プログラムです。</p>
+      <div class="summary-pills">
+        <span class="pill gold">全3日間 / 12時間</span>
+        <span class="pill">カスタマイズ対応</span>
+        <span class="pill">Gemini × NotebookLM × Canvas</span>
+        <span class="pill">事業展開等リスキリング支援コース対応</span>
+      </div>
+    </div>
+
+    <div class="curriculum-grid">
+      <div class="day-card">
+        <div class="day-num">— Day 01</div>
+        <h3 class="day-label">AI基礎・<br>プロンプト設計</h3>
+        <div class="day-sub">4h  /  Foundation</div>
+        <div class="day-divider"></div>
+        <ul class="day-topics">
+          <li>生成AIの仕組み・リスク管理（Gemini）</li>
+          <li>プロンプト設計・テンプレート化</li>
+          <li>セキュリティと著作権の基礎</li>
+        </ul>
+      </div>
+
+      <div class="day-card">
+        <div class="day-num">— Day 02</div>
+        <h3 class="day-label">業務効率化・<br>情報整理</h3>
+        <div class="day-sub">4h  /  Apply</div>
+        <div class="day-divider"></div>
+        <ul class="day-topics">
+          <li>文書・メール・議事録の効率化（Gemini）</li>
+          <li>NotebookLMで社内文書整理</li>
+        </ul>
+        <span class="custom-tag">✦ カスタマイズ対応</span>
+      </div>
+
+      <div class="day-card highlight">
+        <div class="day-num">— Day 03</div>
+        <h3 class="day-label">NotebookLM応用＋<br>アプリ作成</h3>
+        <div class="day-sub">4h  /  Build</div>
+        <div class="day-divider"></div>
+        <ul class="day-topics">
+          <li>NotebookLM応用＋Gemini Canvas</li>
+          <li>学習用ナレッジハブ＋ミニアプリ構築</li>
+        </ul>
+        <span class="custom-tag">✦ カスタマイズ対応</span>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jobspark Proposal — AI活用研修</span>
+      <span><span class="num">02</span> / 07</span>
+    </div>
+  </section>
+
+  <!-- ========== 3. DAY 1-2 foundation ========== -->
+  <section class="slide foundation" data-label="Day 1-2 Foundation">
+    <div class="slide-header">
+      <img src="assets/logo-mark.svg" class="chrome-logo">
+      <span class="chapter">02 / Day 1–2</span>
+    </div>
+
+    <div class="title-block">
+      <div class="eyebrow-line">Foundation Modules</div>
+      <h2>Day 1〜2：<em>AI基礎</em>・業務活用の土台</h2>
+      <p class="lede">生成AIの理解から実務活用まで、段階的に学ぶ。「知る」「使いこなす」「業務で動かす」の三段階で構成しています。</p>
+    </div>
+
+    <div class="module-grid">
+      <div class="module-card">
+        <div class="mod-head">
+          <span class="mod-day">Day 1 / Module 01</span>
+          <span class="mod-latin">Know</span>
+        </div>
+        <h3>Gemini基礎</h3>
+        <ul>
+          <li><span class="chev">›</span>生成AIとは何か・Geminiの特徴</li>
+          <li><span class="chev">›</span>AIにできること・できないこと</li>
+          <li><span class="chev">›</span>業務活用の全体像とリスク管理</li>
+          <li><span class="chev">›</span>セキュリティ・著作権の基礎知識</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <div class="mod-head">
+          <span class="mod-day">Day 1 / Module 02</span>
+          <span class="mod-latin">Craft</span>
+        </div>
+        <h3>プロンプト設計</h3>
+        <ul>
+          <li><span class="chev">›</span>効果的な指示の出し方（構造化プロンプト）</li>
+          <li><span class="chev">›</span>ペルソナ設定・条件指定のテクニック</li>
+          <li><span class="chev">›</span>テンプレート化して繰り返し使う方法</li>
+          <li><span class="chev">›</span><span class="exercise-tag">演習</span>自社業務向けプロンプト作成</li>
+        </ul>
+      </div>
+
+      <div class="module-card">
+        <div class="mod-head">
+          <span class="mod-day">Day 2 / Module 03</span>
+          <span class="mod-latin">Apply</span>
+        </div>
+        <h3>Gemini活用</h3>
+        <ul>
+          <li><span class="chev">›</span>文書・メール・報告書の下書き自動化</li>
+          <li><span class="chev">›</span>議事録の要約・整形</li>
+          <li><span class="chev">›</span>NotebookLMとは何か・Geminiとの違い</li>
+          <li><span class="chev">›</span><span class="exercise-tag">演習</span>日常業務を効率化する実践</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="goal-banner">
+      <span class="goal-label">到達目標</span>
+      <span class="divider-v"></span>
+      <span class="goal-text">Geminiの基本を理解し、<em style="color: var(--gold-400); font-style: normal; font-weight: 500;">日常業務で自律的に活用できる</em>状態を作る。</span>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jobspark Proposal — AI活用研修</span>
+      <span><span class="num">03</span> / 07</span>
+    </div>
+  </section>
+
+  <!-- ========== 4. Day 2 afternoon: NotebookLM ========== -->
+  <section class="slide timetable-slide" data-label="Day 2 NotebookLM">
+    <div class="slide-header">
+      <img src="assets/logo-mark.svg" class="chrome-logo">
+      <span class="chapter">03 / Day 2 後半</span>
+    </div>
+
+    <div class="title-row">
+      <div class="title-block">
+        <div class="eyebrow-line">Day 2 / Afternoon — 2h</div>
+        <h2>Day 2 後半：<em>NotebookLM</em>で社内文書整理</h2>
+        <p class="lede">社内文書をAIで整理し、必要な情報をすぐに引き出せる状態を作る（Day 2 後半の2時間）</p>
+      </div>
+      <span class="custom-badge">Customize</span>
+    </div>
+
+    <div class="tt-wrap">
+      <div class="tt-table">
+        <div class="tt-row">
+          <span class="tt-time">0:00–0:20</span>
+          <span class="tt-kind">座学</span>
+          <span class="tt-body">NotebookLMとは・ソースベースAIの特徴</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">0:20–0:40</span>
+          <span class="tt-kind demo">デモ</span>
+          <span class="tt-body">NotebookLMの基本操作デモ</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">0:40–1:10</span>
+          <span class="tt-kind exercise">演習</span>
+          <span class="tt-body">【演習1】研修用サンプル文書の読み込み</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">1:10–1:35</span>
+          <span class="tt-kind exercise">演習</span>
+          <span class="tt-body">【演習2】Q&amp;A・要約・マインドマップ生成</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">1:35–1:50</span>
+          <span class="tt-kind share">共有</span>
+          <span class="tt-body">グループ共有・フィードバック</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">1:50–2:00</span>
+          <span class="tt-kind wrap">まとめ</span>
+          <span class="tt-body">まとめ・活用テンプレート配布</span>
+        </div>
+      </div>
+
+      <div class="tt-side">
+        <div class="tt-card dark">
+          <div class="tt-card-label">到達目標</div>
+          <ul>
+            <li>NotebookLMに文書を読み込ませて活用できる</li>
+            <li>ソースベースAIの強みと使いどころを理解</li>
+            <li>文書からQ&amp;A・要約・整理を引き出せる</li>
+            <li>明日から使える活用テンプレートを持ち帰る</li>
+          </ul>
+        </div>
+        <div class="tt-card">
+          <div class="tt-card-label">受講者に事前準備をお願い</div>
+          <ul>
+            <li>ノートPC（Googleアカウント）</li>
+            <li>研修用サンプル文書は当方で用意</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jobspark Proposal — AI活用研修</span>
+      <span><span class="num">04</span> / 07</span>
+    </div>
+  </section>
+
+  <!-- ========== 5. Day 3: NotebookLM応用＋Canvas ========== -->
+  <section class="slide timetable-slide" data-label="Day 3 Canvas">
+    <div class="slide-header">
+      <img src="assets/logo-mark.svg" class="chrome-logo">
+      <span class="chapter">04 / Day 3</span>
+    </div>
+
+    <div class="title-row">
+      <div class="title-block">
+        <div class="eyebrow-line">Day 3 — 4h</div>
+        <h2>Day 3：NotebookLM応用＋<em>Gemini Canvas</em>でアプリ作成</h2>
+        <p class="lede">Day2の基礎を応用し、学習用テーマでナレッジハブとミニアプリを作成する。</p>
+      </div>
+      <span class="custom-badge">Customize</span>
+    </div>
+
+    <div class="tt-wrap">
+      <div class="tt-table">
+        <div class="tt-row">
+          <span class="tt-time">0:00–0:20</span>
+          <span class="tt-kind demo">デモ</span>
+          <span class="tt-body">オリエン・NotebookLM応用機能デモ</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">0:20–1:50</span>
+          <span class="tt-kind exercise">演習</span>
+          <span class="tt-body">【演習1】NotebookLMで学習用ナレッジハブ構築</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">1:50–2:20</span>
+          <span class="tt-kind demo">デモ</span>
+          <span class="tt-body">Gemini Canvasとは・簡単なアプリ作成デモ</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">2:20–3:30</span>
+          <span class="tt-kind exercise">演習</span>
+          <span class="tt-body">【演習2】Gemini Canvasでミニアプリ作成</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">3:30–3:50</span>
+          <span class="tt-kind share">共有</span>
+          <span class="tt-body">成果発表・感想共有</span>
+        </div>
+        <div class="tt-row">
+          <span class="tt-time">3:50–4:00</span>
+          <span class="tt-kind wrap">まとめ</span>
+          <span class="tt-body">全3日間の振り返り・アクションプラン</span>
+        </div>
+      </div>
+
+      <div class="tt-side">
+        <div class="tt-card">
+          <div class="tt-card-label">演習テーマ候補</div>
+          <p style="font-size: 13px; color: var(--cocoa-400); margin: 0 0 14px; line-height: 1.6;">学習用題材として選択（受講者のスキル習得を目的とする）</p>
+          <div class="tt-themes">
+            <div class="tt-theme">
+              <span class="diff">難易度：低</span>
+              <h4 class="theme-title">社内FAQ</h4>
+              <p class="theme-body">サンプル社内マニュアルのQ&amp;Aチャット化</p>
+              <span class="theme-tool">NotebookLM</span>
+            </div>
+            <div class="tt-theme">
+              <span class="diff">難易度：低〜中</span>
+              <h4 class="theme-title">議事録整理</h4>
+              <p class="theme-body">サンプル議事録群の整理・横断検索</p>
+              <span class="theme-tool">NotebookLM</span>
+            </div>
+            <div class="tt-theme">
+              <span class="diff">難易度：中</span>
+              <h4 class="theme-title">業務クイズ</h4>
+              <p class="theme-body">学習用クイズをHTMLアプリとして生成</p>
+              <span class="theme-tool">Canvas</span>
+            </div>
+            <div class="tt-theme">
+              <span class="diff">難易度：中</span>
+              <h4 class="theme-title">入力フォーム</h4>
+              <p class="theme-body">フォーム入力→AI整形して表示するミニアプリ</p>
+              <span class="theme-tool">Canvas</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jobspark Proposal — AI活用研修</span>
+      <span><span class="num">05</span> / 07</span>
+    </div>
+  </section>
+
+  <!-- ========== 6. PRICING ========== -->
+  <section class="slide pricing" data-label="Pricing">
+    <div class="slide-header">
+      <img src="assets/logo-mark.svg" class="chrome-logo">
+      <span class="chapter">05 / 費用とプラン</span>
+    </div>
+
+    <div class="title-block">
+      <div class="eyebrow-line">Tools & Pricing</div>
+      <h2>使用ツールの<em>費用とプラン</em></h2>
+      <p class="lede">本研修は無料版で完結します（追加契約なし）。</p>
+      <p class="sublede">— 有料版のご紹介は、研修後の業務本格活用をご検討される場合の参考情報です。</p>
+    </div>
+
+    <div class="price-grid">
+      <div class="price-card">
+        <div class="tool-head">
+          <h3 class="tool-name">Gemini</h3>
+          <span class="plan-tag">無料版</span>
+        </div>
+        <span class="in-training">● 本研修で使用</span>
+        <div class="price-row">
+          <span class="price-val">0</span>
+          <span class="price-unit">円</span>
+          <span class="price-aside">/ 月</span>
+        </div>
+        <ul>
+          <li>Canvas機能を含む基本機能が利用可能</li>
+          <li>日次上限あり</li>
+          <li>研修中の演習では問題なし</li>
+        </ul>
+      </div>
+
+      <div class="price-card">
+        <div class="tool-head">
+          <h3 class="tool-name">NotebookLM</h3>
+          <span class="plan-tag">無料版</span>
+        </div>
+        <span class="in-training">● 本研修で使用</span>
+        <div class="price-row">
+          <span class="price-val">0</span>
+          <span class="price-unit">円</span>
+          <span class="price-aside">/ 月</span>
+        </div>
+        <ul>
+          <li>ソース50件まで、Q&amp;A・要約対応</li>
+          <li>マインドマップ・スライド生成・音声解説もOK</li>
+        </ul>
+      </div>
+
+      <div class="price-card paid">
+        <div class="tool-head">
+          <h3 class="tool-name">Google AI Pro</h3>
+          <span class="plan-tag">有料版</span>
+        </div>
+        <span class="reference-tag">✦ 参考情報</span>
+        <div class="price-row">
+          <span class="price-val">2,900</span>
+          <span class="price-unit">円</span>
+          <span class="price-aside">/ 月</span>
+        </div>
+        <ul>
+          <li>Gemini Pro・NotebookLM Pro</li>
+          <li>Deep Research 等の高度機能</li>
+          <li>大量データ・長時間利用を想定するユーザー向け</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jobspark Proposal — AI活用研修</span>
+      <span><span class="num">06</span> / 07</span>
+    </div>
+  </section>
+
+  <!-- ========== 7. SECURITY / SWITCH ========== -->
+  <section class="slide security" data-label="Security & Switch">
+    <div class="slide-header">
+      <img src="assets/logo-mark.svg" class="chrome-logo">
+      <span class="chapter">06 / 切替・セキュリティ</span>
+    </div>
+
+    <div class="title-block">
+      <div class="eyebrow-line">Switch Timing & Security</div>
+      <h2>切替タイミングと<em>セキュリティ配慮</em></h2>
+      <p class="lede">無料版から有料版へ切り替えるべき2つのシグナルと、情報取扱いの配慮。</p>
+      <p class="note">— 本研修では無料版＋研修用サンプル文書で実施。業務本格利用時の参考としてご覧ください。</p>
+    </div>
+
+    <div class="sig-stack">
+      <div class="sig-row">
+        <div class="sig-marker">
+          <span class="sig-num">01</span>
+          <div>
+            <div class="sig-type">Switch Signal</div>
+            <div class="sig-type-jp">切替シグナル①</div>
+          </div>
+        </div>
+        <div>
+          <h4 class="sig-title">利用量の増加</h4>
+          <p class="sig-desc">無料版の日次上限に頻繁に到達する場合。日常業務でのAI利用が定着してきたサイン。</p>
+        </div>
+        <span class="judge">要検討</span>
+        <div class="sig-action">
+          <strong>Google AI Plus（月1,200円）</strong>か<br>
+          <strong>Pro（月2,900円）</strong>へ切替を推奨
+        </div>
+      </div>
+
+      <div class="sig-row">
+        <div class="sig-marker">
+          <span class="sig-num">02</span>
+          <div>
+            <div class="sig-type">Switch Signal</div>
+            <div class="sig-type-jp">切替シグナル②</div>
+          </div>
+        </div>
+        <div>
+          <h4 class="sig-title">機密データの利用</h4>
+          <p class="sig-desc">社内機密・個人情報を日常的に扱う場合。情報管理とガバナンスの観点から要検討。</p>
+        </div>
+        <span class="judge">要検討</span>
+        <div class="sig-action">
+          <strong>NotebookLM Enterprise版</strong>の検討<br>
+          （Google Cloud経由）
+        </div>
+      </div>
+
+      <div class="sig-row security-row">
+        <div class="sig-marker">
+          <span class="sig-num" style="color: var(--cocoa-400);">03</span>
+          <div>
+            <div class="sig-type" style="color: var(--cocoa-500);">Security</div>
+            <div class="sig-type-jp">情報取扱い</div>
+          </div>
+        </div>
+        <div>
+          <h4 class="sig-title">研修中の情報取扱い</h4>
+          <p class="sig-desc">研修中は研修用サンプル文書のみ使用。実データ・機密情報は扱いません。</p>
+        </div>
+        <span class="judge required">必須配慮</span>
+        <div class="sig-action">
+          業務本利用時：<strong>学習オプトアウト設定</strong><br>
+          もしくは<strong>有料版</strong>へ
+        </div>
+      </div>
+    </div>
+
+    <div class="slide-footer">
+      <span>Jobspark Proposal — AI活用研修</span>
+      <span><span class="num">07</span> / 07</span>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+</body>
+</html>
