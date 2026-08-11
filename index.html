@@ -3,7 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>あゆ実社労士事務所</title>
+  <title>あゆ実社労士事務所｜港区の社会保険労務士（顧問・就業規則・助成金・給与計算・人材育成）</title>
+  <meta name="description" content="東京都港区の社会保険労務士事務所。顧問契約・就業規則・助成金申請・給与計算から人材育成・AI活用支援まで、中小企業の職場づくりを伴走支援します。初回30分の無料相談を実施中です。">
+  <meta property="og:title" content="あゆ実社労士事務所｜港区の社会保険労務士（顧問・就業規則・助成金・給与計算・人材育成）">
+  <meta property="og:description" content="東京都港区の社会保険労務士事務所。顧問契約・就業規則・助成金申請・給与計算から人材育成・AI活用支援まで、中小企業の職場づくりを伴走支援します。">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="あゆ実社労士事務所">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
@@ -22,11 +27,11 @@
       --text: #1B2D4F;
       --text-muted: #6B7280;
       --border: rgba(184, 148, 74, 0.2);
-      --shadow: 0 4px 24px rgba(27, 45, 79, 0.1);
-      --shadow-lg: 0 12px 48px rgba(27, 45, 79, 0.15);
-      --radius: 4px;
-      --radius-sm: 2px;
-      --radius-md: 8px;
+      --shadow: 0 6px 28px rgba(27, 45, 79, 0.07);
+      --shadow-lg: 0 14px 44px rgba(27, 45, 79, 0.1);
+      --radius: 12px;
+      --radius-sm: 8px;
+      --radius-md: 16px;
     }
 
     /* ===== Reset ===== */
@@ -66,11 +71,11 @@
       padding: 16px 48px;
     }
     .nav-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.6rem;
-      font-weight: 600;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 700;
       color: var(--white);
-      letter-spacing: 0.12em;
+      letter-spacing: 0.1em;
     }
     .nav-logo span { color: var(--accent); }
     .nav-links { display: flex; gap: 40px; }
@@ -86,6 +91,7 @@
       display: inline-flex; align-items: center;
       padding: 10px 24px;
       border: 1px solid var(--accent);
+      border-radius: 999px;
       color: var(--accent);
       font-size: 0.85rem;
       font-weight: 600;
@@ -105,11 +111,12 @@
       display: inline-flex; align-items: center; gap: 8px;
       padding: 18px 44px;
       background: var(--accent);
+      border-radius: 999px;
       color: var(--primary-dark);
       font-size: 0.9rem; font-weight: 700;
       letter-spacing: 0.08em;
       transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
-      box-shadow: 0 4px 24px rgba(184, 148, 74, 0.35);
+      box-shadow: 0 6px 20px rgba(184, 148, 74, 0.3);
     }
     .btn-primary:hover {
       transform: translateY(-2px);
@@ -120,6 +127,7 @@
       display: inline-flex; align-items: center; gap: 8px;
       padding: 16px 40px;
       border: 1px solid rgba(255,255,255,0.35);
+      border-radius: 999px;
       color: var(--white);
       font-size: 0.9rem; font-weight: 500;
       letter-spacing: 0.05em;
@@ -132,7 +140,7 @@
 
     /* ===== Layout ===== */
     .section-inner { max-width: 1100px; margin: 0 auto; padding: 0 32px; }
-    section { padding: 100px 0; }
+    section { padding: 112px 0; }
     .section-eyebrow {
       font-family: 'Cormorant Garamond', serif;
       font-size: 0.82rem;
@@ -183,7 +191,7 @@
     .hero {
       min-height: 100vh;
       display: flex; align-items: center;
-      background: linear-gradient(135deg, #0D1F36 0%, #1B2D4F 55%, #2A4273 100%);
+      background: linear-gradient(135deg, #16293F 0%, #24395F 55%, #3D5687 100%);
       position: relative; overflow: hidden;
       padding-top: 80px;
     }
@@ -193,13 +201,13 @@
     }
     .hero-blob-1 {
       width: 640px; height: 640px;
-      background: rgba(184, 148, 74, 0.07);
+      background: rgba(184, 148, 74, 0.13);
       top: -120px; right: -180px;
       animation: float 11s ease-in-out infinite;
     }
     .hero-blob-2 {
       width: 420px; height: 420px;
-      background: rgba(42, 66, 115, 0.35);
+      background: rgba(96, 126, 185, 0.4);
       bottom: -60px; left: -120px;
       animation: float 15s ease-in-out infinite reverse;
     }
@@ -220,6 +228,8 @@
     .hero-inner {
       position: relative; z-index: 1;
       max-width: 1100px; margin: 0 auto; padding: 0 32px;
+      width: 100%;
+
     }
     .hero-label {
       display: inline-flex; align-items: center; gap: 14px;
@@ -228,10 +238,10 @@
     .hero-label-line { width: 40px; height: 1px; background: var(--accent); }
     .hero-label-text {
       font-size: 0.78rem;
-      letter-spacing: 0.32em;
-      color: var(--accent);
-      text-transform: uppercase;
-      font-family: 'Cormorant Garamond', serif;
+      letter-spacing: 0.24em;
+      color: var(--accent-light);
+      font-family: 'Noto Sans JP', sans-serif;
+      font-weight: 500;
     }
     .hero h1 {
       font-size: clamp(2.4rem, 5.5vw, 4rem);
@@ -254,8 +264,9 @@
       display: flex; gap: 20px; flex-wrap: wrap; align-items: center;
     }
     .hero-scroll {
+      grid-column: 1 / -1;
       display: flex; align-items: center; gap: 14px;
-      margin-top: 96px;
+      margin-top: 40px;
       color: rgba(255,255,255,0.35);
       font-size: 0.72rem;
       letter-spacing: 0.22em;
@@ -291,6 +302,7 @@
       padding: 22px 24px;
       background: var(--bg);
       border-left: 3px solid var(--accent);
+      border-radius: var(--radius-sm);
     }
     .problem-item .material-icons { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
     .problem-item-text h4 {
@@ -341,13 +353,14 @@
     .solution-steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 2px;
-      background: var(--border);
+      gap: 24px;
     }
     .solution-step {
       background: var(--white);
       padding: 48px 36px;
       position: relative;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
     }
     .step-number {
       font-family: 'Cormorant Garamond', serif;
@@ -358,6 +371,7 @@
     .step-icon {
       width: 50px; height: 50px;
       background: var(--primary);
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 20px;
     }
@@ -369,10 +383,11 @@
     }
     .solution-step p { font-size: 0.9rem; color: var(--text-muted); line-height: 1.85; }
     .solution-step-arrow {
-      position: absolute; top: 50%; right: -13px;
+      position: absolute; top: 50%; right: -24px;
       transform: translateY(-50%);
       width: 26px; height: 26px;
       background: var(--accent);
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center; z-index: 1;
     }
     .solution-step-arrow .material-icons { font-size: 16px; color: var(--white); }
@@ -387,12 +402,14 @@
     .feature-card {
       padding: 40px 32px;
       border: 1px solid var(--border);
+      border-radius: var(--radius-md);
       position: relative;
+      overflow: hidden;
       transition: box-shadow 0.3s, transform 0.3s;
     }
     .feature-card::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, var(--accent), var(--accent-light));
       transform: scaleX(0);
       transition: transform 0.3s;
@@ -405,6 +422,7 @@
     .feature-icon {
       width: 56px; height: 56px;
       background: var(--bg);
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
       margin-bottom: 24px;
     }
@@ -418,30 +436,60 @@
 
     /* ===== Results Section ===== */
     .results {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-      padding: 100px 0;
+      background: var(--bg);
+      padding: 112px 0;
     }
-    .results .section-title { color: var(--white); }
-    .results .section-eyebrow { color: var(--accent); }
-    .results .section-lead { color: rgba(255,255,255,0.62); }
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 2px;
-      background: rgba(255,255,255,0.07);
+      gap: 24px;
       margin-top: 64px;
     }
     .stat {
       padding: 52px 32px; text-align: center;
-      background: rgba(255,255,255,0.03);
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
     }
     .stat-num {
       font-family: 'Cormorant Garamond', serif;
       font-size: 3.8rem; font-weight: 600;
       color: var(--accent); line-height: 1; margin-bottom: 10px;
     }
-    .stat-num span { font-size: 1.6rem; vertical-align: super; }
-    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.52); letter-spacing: 0.06em; }
+    .stat-num span { font-size: 1.4rem; vertical-align: super; font-family: 'Noto Sans JP', sans-serif; font-weight: 700; }
+    .stat-label { font-size: 0.78rem; color: var(--text-muted); letter-spacing: 0.06em; }
+    .stats-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .results .testimonials-grid { margin-top: 56px; }
+
+    /* ===== Pricing (excerpt) ===== */
+    .pricing { background: var(--bg); }
+    .pricing .feature-card { background: var(--white); }
+    .pricing-plan-name {
+      font-size: 1.02rem; font-weight: 700;
+      color: var(--text); margin-bottom: 10px;
+    }
+    .pricing-price {
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 2rem; font-weight: 700;
+      color: var(--accent); line-height: 1.1;
+      margin-bottom: 16px;
+    }
+    .pricing-price small { font-size: 0.95rem; font-family: 'Noto Sans JP', sans-serif; color: var(--text-muted); font-weight: 500; }
+    .pricing-note {
+      text-align: center; margin-top: 36px;
+      font-size: 0.92rem; color: var(--text);
+    }
+    .pricing-cta { text-align: center; margin-top: 28px; }
+
+    /* ===== Flow (4 steps) ===== */
+    .flow { background: var(--white); }
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+    .flow-steps .solution-step { padding: 40px 28px; background: var(--bg); box-shadow: none; border: 1px solid var(--border); }
+    .flow-steps .solution-step-arrow { right: -22px; }
 
     /* ===== Testimonials ===== */
     .testimonials { background: var(--bg); }
@@ -453,6 +501,8 @@
     .testimonial-card {
       background: var(--white);
       padding: 36px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
       border-bottom: 3px solid transparent;
       transition: border-color 0.3s, box-shadow 0.3s;
     }
@@ -476,9 +526,10 @@
       width: 44px; height: 44px;
       background: var(--primary);
       border: 1px solid var(--accent);
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 0.82rem; font-weight: 600;
+      font-family: 'Noto Sans JP', sans-serif;
+      font-size: 0.82rem; font-weight: 700;
       color: var(--accent); letter-spacing: 0.05em;
     }
     .testimonial-author-info .name {
@@ -503,6 +554,7 @@
     .faq-icon {
       width: 32px; height: 32px;
       border: 1px solid var(--border);
+      border-radius: 50%;
       display: flex; align-items: center; justify-content: center; flex-shrink: 0;
       transition: background 0.2s, border-color 0.2s;
     }
@@ -522,7 +574,10 @@
     /* ===== CTA Section ===== */
     .cta-section { background: var(--bg-dark); padding: 120px 0; }
     .cta-box {
-      background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-lg);
       padding: 80px 64px; text-align: center;
       position: relative; overflow: hidden;
     }
@@ -530,23 +585,23 @@
       content: '';
       position: absolute; top: -70px; right: -70px;
       width: 320px; height: 320px;
-      background: rgba(184, 148, 74, 0.07); border-radius: 50%;
+      background: rgba(184, 148, 74, 0.08); border-radius: 50%;
     }
     .cta-box::after {
       content: '';
       position: absolute; bottom: -90px; left: -90px;
       width: 360px; height: 360px;
-      background: rgba(42, 66, 115, 0.28); border-radius: 50%;
+      background: rgba(247, 245, 240, 0.9); border-radius: 50%;
     }
     .cta-box-inner { position: relative; z-index: 1; }
     .cta-box h2 {
       font-size: clamp(1.75rem, 3vw, 2.5rem);
-      font-weight: 700; color: var(--white);
+      font-weight: 700; color: var(--text);
       margin-bottom: 20px; margin-top: 8px;
       word-break: keep-all;
     }
     .cta-box p {
-      color: rgba(255,255,255,0.68);
+      color: var(--text-muted);
       font-size: 1rem;
       margin-bottom: 48px;
       max-width: 500px;
@@ -558,10 +613,10 @@
       margin-top: 40px; flex-wrap: wrap;
     }
     .cta-feature {
-      color: rgba(255,255,255,0.5);
+      color: var(--text-muted);
       font-size: 0.8rem; letter-spacing: 0.06em;
       padding: 0 20px;
-      border-left: 1px solid rgba(184,148,74,0.3);
+      border-left: 1px solid rgba(184,148,74,0.35);
     }
     .cta-feature:first-child { border-left: none; padding-left: 0; }
 
@@ -609,13 +664,16 @@
       display: flex; flex-direction: column;
       padding: 32px 28px;
       border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--white);
       text-decoration: none;
       transition: box-shadow 0.3s, transform 0.3s;
       position: relative;
+      overflow: hidden;
     }
     .media-card::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
       background: linear-gradient(90deg, var(--accent), var(--accent-light));
       transform: scaleX(0);
       transition: transform 0.3s;
@@ -672,9 +730,13 @@
       position: sticky; top: 100px;
     }
     .company-profile-box {
-      background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-      color: var(--white);
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      color: var(--text);
       margin-bottom: 24px;
+      overflow: hidden;
     }
     .company-profile-photo-wrap {
       position: relative;
@@ -697,12 +759,12 @@
       display: block;
       position: relative;
       z-index: 1;
-      filter: grayscale(8%);
+      border-radius: var(--radius);
     }
     .company-profile-body { padding: 28px 40px 36px; }
     .company-profile-box .profile-name {
       font-size: 1.3rem; font-weight: 700;
-      color: var(--white); margin-bottom: 8px;
+      color: var(--text); margin-bottom: 8px;
     }
     .company-profile-box .profile-title {
       font-size: 0.8rem; color: var(--accent);
@@ -710,7 +772,7 @@
     }
     .company-profile-box .profile-message {
       font-size: 0.9rem; line-height: 2.0;
-      color: rgba(255,255,255,0.75);
+      color: var(--text-muted);
       word-break: keep-all;
     }
     .company-qualifications {
@@ -718,7 +780,7 @@
       margin-top: 24px;
     }
     .company-qualification {
-      font-size: 0.82rem; color: rgba(255,255,255,0.6);
+      font-size: 0.82rem; color: var(--text-muted);
       padding-left: 16px;
       border-left: 2px solid var(--accent);
       letter-spacing: 0.04em;
@@ -726,21 +788,24 @@
 
     /* ===== Responsive ===== */
     @media (max-width: 768px) {
-      section { padding: 64px 0; }
+      section { padding: 72px 0; }
       .section-inner { padding: 0 20px; }
       #mainNav { padding: 16px 20px; }
       #mainNav.scrolled { padding: 12px 20px; }
       .nav-links, .nav-cta { display: none; }
       .nav-hamburger { display: flex; }
-      .hero-inner { padding: 0 20px; }
+      .hero { padding-top: 100px; }
+      .hero-inner { padding: 0 20px; grid-template-columns: 1fr; gap: 0; }
       .hero h1 { font-size: clamp(1.9rem, 8vw, 2.4rem); }
       .hero-sub { font-size: 0.95rem; }
-      .hero-scroll { margin-top: 64px; }
+      .hero-scroll { margin-top: 48px; }
       .problem-grid { grid-template-columns: 1fr; gap: 32px; }
-      .solution-steps { grid-template-columns: 1fr; gap: 0; }
+      .solution-steps { grid-template-columns: 1fr; gap: 20px; }
       .solution-step-arrow { display: none; }
       .features-grid { grid-template-columns: 1fr; }
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+      .stats-grid.cols-3 { grid-template-columns: 1fr; }
+      .flow-steps { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
       .cta-box { padding: 48px 24px; }
       .cta-features { gap: 20px; }
@@ -759,17 +824,18 @@
     }
   </style>
 </head>
-<body>
+<body id="top">
 
   <!-- Scroll Progress Bar -->
   <div class="scroll-indicator" id="scrollBar"></div>
 
   <!-- Navigation -->
   <nav id="mainNav">
-    <a href="#" class="nav-logo">あゆ実<span>社労士事務所</span></a>
+    <a href="#top" class="nav-logo">あゆ実<span>社労士事務所</span></a>
     <ul class="nav-links">
       <li><a href="#problem">課題</a></li>
       <li><a href="#features">特徴</a></li>
+      <li><a href="#results">実績</a></li>
       <li><a href="pricing.html">料金</a></li>
       <li><a href="#media">メディア</a></li>
       <li><a href="#faq">FAQ</a></li>
@@ -786,15 +852,17 @@
     <div class="hero-blob hero-blob-1"></div>
     <div class="hero-blob hero-blob-2"></div>
     <div class="hero-inner">
-      <div class="hero-label fi">
-        <span class="hero-label-line"></span>
-        <span class="hero-label-text">社会保険労務士事務所</span>
-      </div>
-      <h1 class="fi delay-1">従業員を守り、<br>職場の土台を<br><span class="accent-gold">しっかり固める。</span></h1>
-      <p class="hero-sub fi delay-2">労務相談・就業規則・社会保険手続きから社員研修まで。経営者と従業員の双方が安心して働ける職場環境づくりを、社会保険労務士として一貫してサポートします。</p>
-      <div class="hero-cta-group fi delay-3">
-        <a href="#contact" class="btn-primary">無料相談を予約する</a>
-        <a href="#results" class="btn-outline">導入実績を見る</a>
+      <div class="hero-main">
+        <div class="hero-label fi">
+          <span class="hero-label-line"></span>
+          <span class="hero-label-text">社会保険労務士事務所</span>
+        </div>
+        <h1 class="fi delay-1">会社と従業員を守り、<br>職場の土台を<br><span class="accent-gold">しっかり固める。</span></h1>
+        <p class="hero-sub fi delay-2">顧問契約による労務相談・就業規則・助成金・社会保険手続きから社員研修まで。経営者と従業員の双方が安心して働ける職場環境づくりを、港区の社会保険労務士として一貫してサポートします。</p>
+        <div class="hero-cta-group fi delay-3">
+          <a href="#contact" class="btn-primary">無料相談を予約する</a>
+          <a href="#results" class="btn-outline">導入実績を見る</a>
+        </div>
       </div>
       <div class="hero-scroll fi delay-4">
         <span class="hero-scroll-line"></span>
@@ -804,7 +872,7 @@
   </section>
 
   <!-- Wave: Hero to Problem -->
-  <div class="wave" style="background: linear-gradient(135deg, #0D1F36 0%, #1B2D4F 55%, #2A4273 100%);">
+  <div class="wave" style="background: linear-gradient(135deg, #16293F 0%, #24395F 55%, #3D5687 100%);">
     <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,10 1440,40 L1440,80 L0,80 Z" fill="#FFFFFF"/>
     </svg>
@@ -813,11 +881,11 @@
   <!-- Problem -->
   <section class="problem" id="problem">
     <div class="section-inner">
-      <div class="problem-grid">
+      <div>
         <div>
           <p class="section-eyebrow fi">Problem</p>
           <h2 class="section-title fi delay-1">こんなお悩みは<br><span class="accent">ありませんか？</span></h2>
-          <p class="section-lead fi delay-2">中小企業の経営者・人事担当者からよく寄せられるお悩みです。社会保険労務士として、これらを一括してサポートします。</p>
+          <p class="section-lead fi delay-2">中小企業の経営者・人事担当者からよく寄せられるお悩みです。顧問社労士として、就業規則・助成金・手続きまで一括してサポートします。</p>
           <div class="problem-list">
             <div class="problem-item fi delay-2">
               <div class="problem-item-text">
@@ -836,19 +904,6 @@
                 <h4>採用しても定着しない、人が育たない</h4>
                 <p>せっかく採用しても早期離職が続く。育成の仕組みがなく、管理職も部下への関わり方に悩んでいる。</p>
               </div>
-            </div>
-          </div>
-        </div>
-        <div class="problem-highlight fi delay-3">
-          <blockquote>「研修後も何も変わらない」という声を、私たちは聞き続けてきました。その根本にあるのは、知識偏重の設計です。</blockquote>
-          <div class="problem-highlight-stat">
-            <div>
-              <div class="num">67<span style="font-size:1.2rem;">%</span></div>
-              <div class="label">研修内容が実務に<br>活かせていない企業</div>
-            </div>
-            <div>
-              <div class="num">72<span style="font-size:1.2rem;">%</span></div>
-              <div class="label">研修効果を測定<br>できていない企業</div>
             </div>
           </div>
         </div>
@@ -931,7 +986,160 @@
     </div>
   </section>
 
-  <!-- Wave: Features to Media -->
+  <!-- Wave: Features to Results -->
+  <div class="wave" style="background: var(--white);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#F7F5F0"/>
+    </svg>
+  </div>
+
+  <!-- Results -->
+  <section class="results" id="results">
+    <div class="section-inner">
+      <div class="section-header center fi">
+        <p class="section-eyebrow">Results</p>
+        <h2 class="section-title">数字で見る<span class="accent">支援実績</span></h2>
+        <p class="section-lead">顧問契約・就業規則・助成金からAI活用まで、中小企業を中心に支援を重ねてきました。</p>
+      </div>
+      <div class="stats-grid cols-3">
+        <div class="stat fi delay-1">
+          <div class="stat-num">50<span>回+</span></div>
+          <div class="stat-label">セミナー・研修 登壇実績</div>
+        </div>
+        <div class="stat fi delay-2">
+          <div class="stat-num">30<span>社+</span></div>
+          <div class="stat-label">AI活用支援・人事労務サポート<br>（中小企業中心）</div>
+        </div>
+        <div class="stat fi delay-3">
+          <div class="stat-num">600<span>名+</span></div>
+          <div class="stat-label">受講者・研修参加者（のべ）</div>
+        </div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card fi delay-1">
+          <div class="testimonial-quote-icon">&ldquo;</div>
+          <p class="testimonial-text">就業規則・諸規程の整備、助成金申請、給与計算、勤怠のクラウド化までを一括支援。AI活用の月次伴走も継続中です。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">接</div>
+            <div class="testimonial-author-info">
+              <div class="name">接骨院</div>
+              <div class="role">従業員数名／顧問契約</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fi delay-2">
+          <div class="testimonial-quote-icon">&ldquo;</div>
+          <p class="testimonial-text">ベースアップ評価料（診療報酬）の賃金改善に関する是正対応と、給与体系の確認を支援しました。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">ク</div>
+            <div class="testimonial-author-info">
+              <div class="name">クリニック</div>
+              <div class="role">是正対応・給与体系の確認</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card fi delay-3">
+          <div class="testimonial-quote-icon">&ldquo;</div>
+          <p class="testimonial-text">採用実務の代行（スカウト・日程調整・面接設計から内定まで）を一貫してサポートしています。</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">IT</div>
+            <div class="testimonial-author-info">
+              <div class="name">IT企業</div>
+              <div class="role">採用実務の代行</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Results to Pricing -->
+  <div class="wave" style="background: var(--bg);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,40 C240,80 480,0 720,40 C960,80 1200,10 1440,40 L1440,80 L0,80 Z" fill="#F7F5F0"/>
+    </svg>
+  </div>
+
+  <!-- Pricing -->
+  <section class="pricing" id="pricing">
+    <div class="section-inner">
+      <div class="section-header center fi">
+        <p class="section-eyebrow">Pricing</p>
+        <h2 class="section-title">顧問契約は<span class="accent">月25,000円から</span></h2>
+        <p class="section-lead">従業員規模に合わせた3つの顧問プランをご用意しています。就業規則や助成金などのスポット対応も可能です。</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card fi delay-1">
+          <p class="pricing-plan-name">ライト</p>
+          <div class="pricing-price">月2.5万円<small>〜</small></div>
+          <p>従業員〜9名の企業向け。チャット相談は無制限。まず顧問社労士を持ちたい会社に。</p>
+        </div>
+        <div class="feature-card fi delay-2">
+          <p class="pricing-plan-name">スタンダード</p>
+          <div class="pricing-price">月4.5万円<small>〜</small></div>
+          <p>従業員10〜29名向け。社会保険・労働保険の手続き無制限。算定基礎届・年度更新も込み。</p>
+        </div>
+        <div class="feature-card fi delay-3">
+          <p class="pricing-plan-name">プレミアム</p>
+          <div class="pricing-price">月8万円<small>〜</small></div>
+          <p>従業員30〜99名向け。手続き・算定・年度更新に加え、給与計算まで込みのフルサポート。</p>
+        </div>
+      </div>
+      <p class="pricing-note fi">顧問先は、就業規則作成や助成金申請などすべてのスポット料金が<strong>約30%OFF</strong>になります。</p>
+      <div class="pricing-cta fi">
+        <a href="pricing.html" class="btn-primary">料金表をくわしく見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Pricing to Flow -->
+  <div class="wave" style="background: var(--bg);">
+    <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path d="M0,20 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,80 L0,80 Z" fill="#FFFFFF"/>
+    </svg>
+  </div>
+
+  <!-- Flow -->
+  <section class="flow" id="flow">
+    <div class="section-inner">
+      <div class="section-header center fi">
+        <p class="section-eyebrow">Flow</p>
+        <h2 class="section-title">ご依頼の<span class="accent">流れ</span></h2>
+        <p class="section-lead">初回のご相談からご契約・ご支援開始まで、シンプルな4ステップです。</p>
+      </div>
+      <div class="flow-steps">
+        <div class="solution-step fi delay-1">
+          <div class="step-number">01</div>
+          <div class="step-icon"><span class="material-icons">forum</span></div>
+          <h3>無料相談</h3>
+          <p>30分・オンライン可。現在のお悩みやご要望をお聞かせください。</p>
+          <div class="solution-step-arrow"><span class="material-icons">arrow_forward</span></div>
+        </div>
+        <div class="solution-step fi delay-2">
+          <div class="step-number">02</div>
+          <div class="step-icon"><span class="material-icons">description</span></div>
+          <h3>ご提案・お見積り</h3>
+          <p>課題に合わせた支援内容とお見積りをご提示します。</p>
+          <div class="solution-step-arrow"><span class="material-icons">arrow_forward</span></div>
+        </div>
+        <div class="solution-step fi delay-3">
+          <div class="step-number">03</div>
+          <div class="step-icon"><span class="material-icons">history_edu</span></div>
+          <h3>ご契約</h3>
+          <p>内容にご納得いただけたら、契約を締結します。</p>
+          <div class="solution-step-arrow"><span class="material-icons">arrow_forward</span></div>
+        </div>
+        <div class="solution-step fi delay-4">
+          <div class="step-number">04</div>
+          <div class="step-icon"><span class="material-icons">flag</span></div>
+          <h3>初月キックオフ</h3>
+          <p>現状確認と優先順位づけを行い、以降は月次でご支援します。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Wave: Flow to Media -->
   <div class="wave" style="background: var(--white);">
     <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
       <path d="M0,40 C360,80 720,0 1080,40 C1260,60 1380,20 1440,40 L1440,80 L0,80 Z" fill="#F7F5F0"/>
@@ -969,47 +1177,56 @@
       <div class="faq-list">
         <div class="faq-item fi">
           <div class="faq-question">
-            <span class="faq-q-text">研修の対象人数に上限・下限はありますか？</span>
+            <span class="faq-q-text">顧問契約には何が含まれますか？</span>
             <div class="faq-icon"><span class="material-icons">add</span></div>
           </div>
           <div class="faq-answer">
-            <p>対象人数は5名から500名まで対応可能です。少人数のマネージャー向けプログラムから、全社員を対象とした大規模研修まで、柔軟に設計いたします。</p>
+            <p>日常の労務相談、社会保険・労働保険の手続き、法改正への対応などが基本に含まれます。プランによっては算定基礎届・年度更新や給与計算まで含まれますので、詳しくは料金表をご覧ください。</p>
           </div>
         </div>
         <div class="faq-item fi delay-1">
           <div class="faq-question">
-            <span class="faq-q-text">研修のテーマや内容はカスタマイズできますか？</span>
+            <span class="faq-q-text">スポット（単発）だけの依頼もできますか？</span>
             <div class="faq-icon"><span class="material-icons">add</span></div>
           </div>
           <div class="faq-answer">
-            <p>すべてのプログラムは貴社の課題・目標に合わせてカスタマイズします。初回のヒアリングを通じて現状を把握し、最適な研修設計をご提案します。</p>
+            <p>可能です。就業規則の作成・見直しや助成金申請など、単発でのご依頼も承っています。料金の目安は料金表に記載していますので、あわせてご確認ください。</p>
           </div>
         </div>
         <div class="faq-item fi delay-2">
           <div class="faq-question">
-            <span class="faq-q-text">オンラインと対面、どちらに対応していますか？</span>
+            <span class="faq-q-text">対応地域を教えてください。</span>
             <div class="faq-icon"><span class="material-icons">add</span></div>
           </div>
           <div class="faq-answer">
-            <p>対面・オンライン・ハイブリッドのいずれにも対応しています。全国どこからでもご参加いただけます。</p>
+            <p>東京都港区を拠点としています。オンラインでのご相談・お手続きに対応していますので、全国の企業さまからご依頼いただけます。</p>
           </div>
         </div>
         <div class="faq-item fi delay-3">
           <div class="faq-question">
-            <span class="faq-q-text">費用の目安はどのくらいですか？</span>
+            <span class="faq-q-text">相談はどのように行いますか？</span>
             <div class="faq-icon"><span class="material-icons">add</span></div>
           </div>
           <div class="faq-answer">
-            <p>プログラムの内容・期間・人数によって異なります。まずは無料相談にてご要望をお聞かせください。最適なプランをご提案いたします。</p>
+            <p>チャット・オンライン面談・対面のいずれにも対応しています。顧問先さまはチャットでのご相談が無制限ですので、日々の小さな疑問もお気軽にお寄せください。</p>
           </div>
         </div>
         <div class="faq-item fi delay-4">
           <div class="faq-question">
-            <span class="faq-q-text">まず相談だけでも大丈夫ですか？</span>
+            <span class="faq-q-text">クラウドソフトには対応していますか？</span>
             <div class="faq-icon"><span class="material-icons">add</span></div>
           </div>
           <div class="faq-answer">
-            <p>もちろんです。初回は30分の無料相談をご用意しています。「何から始めればいいかわからない」という段階でも、お気軽にお問い合わせください。</p>
+            <p>マネーフォワードをはじめとするクラウドの給与・会計・勤怠ソフトに対応しています。あわせて、AI活用による業務効率化のご支援も行っています。</p>
+          </div>
+        </div>
+        <div class="faq-item fi delay-5">
+          <div class="faq-question">
+            <span class="faq-q-text">研修や人材育成もお願いできますか？</span>
+            <div class="faq-icon"><span class="material-icons">add</span></div>
+          </div>
+          <div class="faq-answer">
+            <p>可能です。社労士×キャリアコンサルタントとして、5名程度の少人数から500名規模まで、貴社に合わせた研修・人材育成をご提案します。まずは30分の無料相談で、お気軽にご要望をお聞かせください。</p>
           </div>
         </div>
       </div>
@@ -1048,7 +1265,10 @@
                 労務相談、就業規則整備、<br>
                 助成金申請支援、人材育成支援に加え、<br>
                 AIを活用した業務効率化支援にも<br>
-                取り組んでいる。
+                取り組んでいる。<br><br>
+                「制度を作って終わり」にせず、<br>
+                現場で運用され、人が育つところまで<br>
+                伴走することを大切にしています。
               </p>
               <div class="company-qualifications">
                 <div class="company-qualification">社会保険労務士</div>
@@ -1108,8 +1328,8 @@
       <div class="cta-box fi">
         <div class="cta-box-inner">
           <p class="section-eyebrow">Contact</p>
-          <h2>組織変革の第一歩を、<br>ここから始めましょう。</h2>
-          <p>まずは30分の無料相談から。貴社の課題をお聞かせください。最適なアプローチをご提案します。</p>
+          <h2>安心して働ける職場づくりを、<br>ここから始めましょう。</h2>
+          <p>まずは30分の無料相談から。顧問契約・就業規則・助成金など、貴社の課題をお聞かせください。最適なアプローチをご提案します。</p>
           <a href="https://docs.google.com/forms/d/e/1FAIpQLScHu1cPkkep90kYC2XfZqh8XAeRWPvF6TgrdeY9WQtNZIUNug/viewform" target="_blank" class="btn-primary">無料相談を予約する</a>
           <div class="cta-features">
             <div class="cta-feature">完全無料・30分</div>
@@ -1126,17 +1346,17 @@
     <div class="footer-inner">
       <div class="footer-top">
         <div class="footer-brand">
-          <a href="#" class="nav-logo">あゆ実<span>社労士事務所</span></a>
-          <p>行動変容にフォーカスした企業研修・人材育成で、組織の持続的な成長を支援します。</p>
+          <a href="#top" class="nav-logo">あゆ実<span>社労士事務所</span></a>
+          <p>港区の社会保険労務士事務所。労務管理・就業規則・助成金から人材育成・AI活用まで、中小企業の職場づくりを支援します。</p>
         </div>
         <div class="footer-links-group">
           <div class="footer-links-col">
             <h4>Service</h4>
             <ul>
-              <li><a href="#">企業研修</a></li>
-              <li><a href="#">管理職研修</a></li>
-              <li><a href="#">新人研修</a></li>
-              <li><a href="#">効果測定</a></li>
+              <li><a href="#solution">労務相談・顧問契約</a></li>
+              <li><a href="#solution">就業規則・規程整備</a></li>
+              <li><a href="#solution">助成金申請サポート</a></li>
+              <li><a href="pricing.html">料金表</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
@@ -1144,25 +1364,22 @@
             <ul>
               <li><a href="#company">事務所概要</a></li>
               <li><a href="pricing.html">料金表</a></li>
-              <li><a href="#">実績・事例</a></li>
-              <li><a href="#">メディア掲載</a></li>
-              <li><a href="#">採用情報</a></li>
+              <li><a href="#results">実績・事例</a></li>
+              <li><a href="#media">メディア掲載</a></li>
             </ul>
           </div>
           <div class="footer-links-col">
             <h4>Legal</h4>
             <ul>
-              <li><a href="#">プライバシーポリシー</a></li>
-              <li><a href="#">利用規約</a></li>
               <li><a href="https://drive.google.com/file/d/1rvLzOF9nc9PJ9DtVC3E5s4qGlhfNI7ru/view" target="_blank" rel="noopener">カスタマーハラスメント対応方針</a></li>
-              <li><a href="#">お問い合わせ</a></li>
+              <li><a href="#contact">お問い合わせ</a></li>
             </ul>
           </div>
         </div>
       </div>
       <div class="footer-bottom">
-        <p>&copy; 2026 ELEVATE. All rights reserved.</p>
-        <p>企業研修・人材育成 | ELEVATE</p>
+        <p>&copy; 2026 あゆ実社労士事務所 All rights reserved.</p>
+        <p>東京都港区の社会保険労務士事務所</p>
       </div>
     </div>
   </footer>
