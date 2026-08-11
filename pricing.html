@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>サービス料金表 | あゆ実社労士事務所</title>
+<style>
+  :root {
+    --navy: #0f2544;
+    --navy-2: #16304f;
+    --gold: #c9a24b;
+    --gold-light: #e8d5a8;
+    --ink: #1f2f3d;
+    --muted: #667582;
+    --line: #dfe5ec;
+    --bg: #f7f9fb;
+    --accent-bg: #eef3f8;
+  }
+  * { box-sizing: border-box; margin: 0; }
+  body {
+    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    color: var(--ink);
+    background: var(--bg);
+    line-height: 1.7;
+  }
+  .page { max-width: 900px; margin: 0 auto; padding: 0 24px; }
+
+  /* ヒーロー */
+  .hero {
+    background: linear-gradient(150deg, var(--navy) 0%, #1a3a5f 100%);
+    color: #fff;
+    text-align: center;
+    padding: 64px 24px 56px;
+  }
+  .hero .eyebrow {
+    color: var(--gold-light);
+    font-size: 12px;
+    letter-spacing: 0.25em;
+    margin-bottom: 14px;
+  }
+  .hero h1 { font-size: 34px; margin-bottom: 14px; letter-spacing: 0.05em; }
+  .hero p { color: #c9d4e0; font-size: 14px; }
+  .hero .badge {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 22px;
+    border: 1px solid rgba(255,255,255,0.35);
+    border-radius: 999px;
+    font-size: 12px;
+    color: #dfe7f0;
+  }
+
+  .section { padding: 48px 0 8px; }
+  .sec-label {
+    color: var(--gold);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    margin-bottom: 6px;
+  }
+  h2 { font-size: 24px; color: var(--navy); margin-bottom: 8px; }
+  .sec-lead { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
+
+  /* 顧問プランカード */
+  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .plan {
+    background: #fff;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px 20px;
+    position: relative;
+  }
+  .plan.featured { border: 2px solid var(--gold); }
+  .plan .tag {
+    position: absolute; top: -12px; right: 14px;
+    background: var(--gold); color: #fff;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 12px; border-radius: 999px;
+  }
+  .plan .name { font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: 0.12em; }
+  .plan .price { font-size: 28px; font-weight: 700; color: var(--navy); margin: 6px 0 2px; }
+  .plan .price small { font-size: 13px; font-weight: 400; color: var(--muted); }
+  .plan .scope { font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 10px; }
+  .plan ul { list-style: none; font-size: 13px; color: var(--muted); }
+  .plan li { padding: 4px 0 4px 16px; position: relative; }
+  .plan li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+  .enterprise {
+    margin-top: 14px;
+    background: var(--navy);
+    color: #fff;
+    border-radius: 10px;
+    padding: 20px 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+  }
+  .enterprise .t { font-weight: 700; }
+  .enterprise .d { font-size: 13px; color: #b9c6d4; }
+  .enterprise .q { color: var(--gold-light); font-weight: 700; white-space: nowrap; }
+
+  /* テーブル共通 */
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; font-size: 13.5px; }
+  thead th {
+    background: var(--navy); color: #fff;
+    font-size: 12px; font-weight: 700;
+    padding: 12px 14px; text-align: left;
+  }
+  tbody th, tbody td { padding: 13px 14px; border-top: 1px solid var(--line); text-align: left; vertical-align: middle; }
+  tbody th { font-weight: 700; color: var(--ink); }
+  tbody td { color: var(--muted); }
+  td.spot { color: var(--ink); font-weight: 700; white-space: nowrap; }
+  td.komon { white-space: nowrap; }
+  .off {
+    display: inline-block;
+    background: rgba(201,162,75,0.15);
+    color: #8a6a1f;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 6px;
+  }
+  .free {
+    display: inline-block;
+    background: rgba(46,125,50,0.12);
+    color: #2e7d32;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 6px;
+  }
+  .notes { font-size: 12px; color: var(--muted); margin-top: 12px; }
+  .notes li { margin-left: 1.2em; }
+
+  /* 年間比較 */
+  .compare-wrap {
+    background: linear-gradient(150deg, var(--navy) 0%, #1a3a5f 100%);
+    border-radius: 12px;
+    padding: 34px 30px;
+    color: #fff;
+    margin-top: 8px;
+  }
+  .compare-wrap h3 { font-size: 19px; margin-bottom: 4px; }
+  .compare-wrap .sub { font-size: 13px; color: #b9c6d4; margin-bottom: 20px; }
+  .compare-table { background: transparent; border: none; }
+  .compare-table thead th { background: rgba(255,255,255,0.08); }
+  .compare-table tbody th, .compare-table tbody td { border-top: 1px solid rgba(255,255,255,0.15); color: #dfe7f0; }
+  .compare-table tbody th { color: #fff; font-weight: 400; }
+  .compare-table .total th, .compare-table .total td { font-weight: 700; font-size: 15px; color: var(--gold-light); }
+  .compare-result {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gold-light);
+  }
+  .compare-note { font-size: 11.5px; color: #9fb0c2; margin-top: 10px; text-align: center; }
+
+  /* CTA */
+  .cta {
+    background: linear-gradient(150deg, var(--navy) 0%, #1a3a5f 100%);
+    color: #fff; text-align: center;
+    border-radius: 12px;
+    padding: 44px 24px;
+    margin: 48px 0;
+  }
+  .cta .eyebrow { color: var(--gold-light); font-size: 11px; letter-spacing: 0.2em; margin-bottom: 10px; }
+  .cta h2 { color: #fff; margin-bottom: 8px; }
+  .cta p { color: #c9d4e0; font-size: 14px; margin-bottom: 18px; }
+  .cta .button {
+    display: inline-block;
+    background: #fff; color: var(--navy);
+    font-weight: 700; text-decoration: none;
+    padding: 14px 34px; border-radius: 8px;
+  }
+  .cta .small { font-size: 12px; color: #9fb0c2; margin-top: 14px; }
+
+  footer { text-align: center; font-size: 12px; color: var(--muted); padding: 20px 0 40px; }
+
+  @media (max-width: 720px) {
+    .plans { grid-template-columns: 1fr; }
+    .enterprise { flex-direction: column; align-items: flex-start; }
+  }
+  @media print {
+    body { background: #fff; }
+    .hero, .compare-wrap, .cta, thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    .section { padding: 28px 0 4px; page-break-inside: avoid; }
+    .plans, table { page-break-inside: avoid; }
+    @page { size: A4; margin: 12mm; }
+  }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <p style="margin-bottom:18px;"><a href="index.html" style="color:#c9d4e0; font-size:13px; text-decoration:none;">← あゆ実社労士事務所 トップページへ</a></p>
+  <p class="eyebrow">FEE SCHEDULE</p>
+  <h1>サービス料金表</h1>
+  <p>顧問契約とスポット依頼、どちらにも対応しています。<br>顧問先はすべてのスポット料金が約30%OFFになります。</p>
+  <span class="badge">すべて税別表示 ・ 改訂：2026年8月</span>
+</div>
+
+<div class="page">
+
+  <!-- 01 顧問プラン -->
+  <section class="section">
+    <p class="sec-label">01&nbsp;&nbsp;MONTHLY RETAINER</p>
+    <h2>月額顧問プラン</h2>
+    <p class="sec-lead">日常の労務管理をまるごとカバーします。相談のたびに料金は発生しません。すべてのスポット料金が顧問先価格（約30%OFF）になります。</p>
+    <div class="plans">
+      <div class="plan">
+        <p class="name">LIGHT</p>
+        <p class="price">¥25,000<small>〜 / 月</small></p>
+        <p class="scope">従業員 〜 9名</p>
+        <ul>
+          <li>社会保険・労働保険手続き（月3件まで）</li>
+          <li>チャット労務相談（無制限）</li>
+          <li>法改正情報の提供</li>
+          <li>スポット料金 顧問先価格</li>
+        </ul>
+      </div>
+      <div class="plan featured">
+        <span class="tag">人気</span>
+        <p class="name">STANDARD</p>
+        <p class="price">¥45,000<small>〜 / 月</small></p>
+        <p class="scope">従業員 10 〜 29名</p>
+        <ul>
+          <li>手続き全般（件数無制限）</li>
+          <li>労務相談（チャット無制限・面談 月2回）</li>
+          <li>算定基礎届・労働保険年度更新 込み</li>
+          <li>就業規則の軽微変更 対応</li>
+          <li>給与計算チェック</li>
+        </ul>
+      </div>
+      <div class="plan">
+        <p class="name">PREMIUM</p>
+        <p class="price">¥80,000<small>〜 / 月</small></p>
+        <p class="scope">従業員 30 〜 99名</p>
+        <ul>
+          <li>STANDARDの全内容</li>
+          <li>給与計算代行 込み</li>
+          <li>就業規則の定期見直し</li>
+          <li>助成金診断・着手金無料</li>
+          <li>研修 1回 / 年（半日）</li>
+        </ul>
+      </div>
+    </div>
+    <div class="enterprise">
+      <div>
+        <p class="t">ENTERPRISE — 100名以上・グループ企業</p>
+        <p class="d">専任体制でカスタマイズした包括サポートを提供します。</p>
+      </div>
+      <p class="q">お見積り</p>
+    </div>
+    <ul class="notes">
+      <li>※ 初回面談（無料・30分）にてプラン・金額を確定いたします。</li>
+      <li>※ 顧問先価格（約30%OFF）は、プランを問わずすべての顧問先に適用されます。</li>
+    </ul>
+  </section>
+
+  <!-- 02 手続き -->
+  <section class="section">
+    <p class="sec-label">02&nbsp;&nbsp;PROCEDURES</p>
+    <h2>労働・社会保険手続き</h2>
+    <p class="sec-lead">スポット依頼の正価と、顧問先価格の一覧です。</p>
+    <table>
+      <thead>
+        <tr><th>手続き種別</th><th>スポット料金（税別）</th><th>顧問先価格</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>入社・退社手続き（社会保険・雇用保険）</th>
+          <td class="spot">¥8,000〜 / 件</td>
+          <td class="komon"><span class="free">顧問料に込み</span></td>
+          <td>Lightは月3件まで</td>
+        </tr>
+        <tr>
+          <th>算定基礎届・月額変更届</th>
+          <td class="spot">¥30,000〜 / 回</td>
+          <td class="komon"><span class="free">Standard以上 込み</span></td>
+          <td>Lightは<span class="off">¥21,000〜</span></td>
+        </tr>
+        <tr>
+          <th>労働保険年度更新</th>
+          <td class="spot">¥30,000〜 / 年</td>
+          <td class="komon"><span class="free">Standard以上 込み</span></td>
+          <td>Lightは<span class="off">¥21,000〜</span></td>
+        </tr>
+        <tr>
+          <th>育児・介護休業申請代行（給付金請求含む）</th>
+          <td class="spot">¥15,000〜 / 件</td>
+          <td class="komon"><span class="off">¥10,500〜</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <th>健康診断結果管理・報告書作成</th>
+          <td class="spot">¥20,000〜 / 回</td>
+          <td class="komon"><span class="off">¥14,000〜</span></td>
+          <td>定期健診（年1回）対応</td>
+        </tr>
+        <tr>
+          <th>労働基準監督署への届出代行</th>
+          <td class="spot">¥10,000〜 / 回</td>
+          <td class="komon"><span class="free">無料</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <th>個別労務相談（スポット）</th>
+          <td class="spot">¥15,000 / 時間</td>
+          <td class="komon"><span class="free">顧問料に込み</span></td>
+          <td>オンライン対応可</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 03 就業規則 -->
+  <section class="section">
+    <p class="sec-label">03&nbsp;&nbsp;WORK RULES</p>
+    <h2>就業規則・諸規程の作成</h2>
+    <p class="sec-lead">法改正に対応した規程整備で、会社を守る土台をつくります。</p>
+    <table>
+      <thead>
+        <tr><th>サービス内容</th><th>スポット料金（税別）</th><th>顧問先価格</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>就業規則 新規作成</th>
+          <td class="spot">¥300,000〜</td>
+          <td class="komon"><span class="off">¥200,000〜</span></td>
+          <td>ヒアリング・社員説明会含む</td>
+        </tr>
+        <tr>
+          <th>就業規則 変更・改定</th>
+          <td class="spot">¥60,000〜</td>
+          <td class="komon"><span class="off">¥42,000〜</span></td>
+          <td>軽微変更はStandard以上込み</td>
+        </tr>
+        <tr>
+          <th>各種規程の作成（賃金・育児介護・ハラスメント等）</th>
+          <td class="spot">¥35,000〜 / 規程</td>
+          <td class="komon"><span class="off">¥24,500〜</span></td>
+          <td>複数同時はセット割引あり</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="notes">
+      <li>※ 複数規程の同時作成には10〜20%のセット割引を適用します（顧問先価格との併用可）。</li>
+    </ul>
+  </section>
+
+  <!-- 04 給与計算 -->
+  <section class="section">
+    <p class="sec-label">04&nbsp;&nbsp;PAYROLL</p>
+    <h2>給与計算サービス</h2>
+    <p class="sec-lead">月次計算から年末調整まで、クラウドソフトを活用して正確・スピーディに代行します。</p>
+    <table>
+      <thead>
+        <tr><th>サービス内容</th><th>スポット料金（税別）</th><th>顧問先価格</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>給与計算代行（月次）</th>
+          <td class="spot">¥25,000〜（10名まで）<br>11名目から ＋¥800 / 人</td>
+          <td class="komon"><span class="off">¥17,500〜（10名まで）<br>11名目から ＋¥600 / 人</span></td>
+          <td>Premiumは顧問料に込み</td>
+        </tr>
+        <tr>
+          <th>賞与計算代行</th>
+          <td class="spot">基本 ¥8,000 ＋ ¥400 / 人・回</td>
+          <td class="komon"><span class="off">基本 ¥5,000 ＋ ¥300 / 人・回</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <th>年末調整代行</th>
+          <td class="spot">基本 ¥30,000 ＋ ¥2,500 / 人</td>
+          <td class="komon"><span class="off">基本 ¥20,000 ＋ ¥2,000 / 人</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <th>給与明細の電子化対応</th>
+          <td class="spot">¥5,000〜 / 月</td>
+          <td class="komon"><span class="off">初期設定サポート込み</span></td>
+          <td>クラウドシステム連携</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="notes">
+      <li>※ 給与計算ソフトのライセンス費用は別途となります。既存データの移行にも対応します（別途お見積り）。</li>
+    </ul>
+  </section>
+
+  <!-- 05 助成金 -->
+  <section class="section">
+    <p class="sec-label">05&nbsp;&nbsp;SUBSIDIES</p>
+    <h2>助成金申請支援</h2>
+    <p class="sec-lead">活用できる助成金の診断から計画認定・支給申請まで一貫して支援します。不支給の場合、成功報酬は発生しません。</p>
+    <table>
+      <thead>
+        <tr><th>内容</th><th>スポット料金（税別）</th><th>顧問先価格</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th>着手金（計画作成・書類準備）</th>
+          <td class="spot">¥50,000〜</td>
+          <td class="komon"><span class="off">¥30,000〜</span></td>
+          <td>Premiumは着手金無料</td>
+        </tr>
+        <tr>
+          <th>成功報酬</th>
+          <td class="spot">受給額の 30%</td>
+          <td class="komon"><span class="off">受給額の 20%</span></td>
+          <td>不支給の場合は不要</td>
+        </tr>
+        <tr>
+          <th>助成金活用診断</th>
+          <td class="spot">¥20,000 / 回</td>
+          <td class="komon"><span class="free">無料（年1回）</span></td>
+          <td>—</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul class="notes">
+      <li>※ 対応例：人材確保等支援助成金、キャリアアップ助成金、両立支援等助成金、人材開発支援助成金 ほか。</li>
+      <li>※ 助成金の要件・金額は年度により改正されます。最新情報は面談にてご確認ください。</li>
+      <li>※ 多くの助成金は制度導入「前」の計画認定が必要です。お早めにご相談ください。</li>
+    </ul>
+  </section>
+
+  <!-- 06 研修 -->
+  <section class="section">
+    <p class="sec-label">06&nbsp;&nbsp;TRAINING</p>
+    <h2>研修・人材育成プログラム</h2>
+    <p class="sec-lead">社労士×国家資格キャリアコンサルタントとして、法的根拠に基づいた実践的な研修を提供します。すべてカスタマイズ対応です。</p>
+    <table>
+      <thead>
+        <tr><th>プログラム内容</th><th>時間</th><th>備考</th></tr>
+      </thead>
+      <tbody>
+        <tr><th>管理職向け 労務管理研修</th><td>3時間</td><td>テキスト込み・出張対応</td></tr>
+        <tr><th>ハラスメント防止研修</th><td>2時間</td><td>受講証明書発行可</td></tr>
+        <tr><th>新入社員向け 社会保険基礎研修</th><td>2時間</td><td>オンライン対応可</td></tr>
+        <tr><th>採用・定着・人材育成プログラム設計</th><td>要相談</td><td>カスタマイズ対応</td></tr>
+      </tbody>
+    </table>
+    <ul class="notes">
+      <li>※ 料金は内容・人数に応じてお見積りいたします。Premiumは年1回（半日）の研修が顧問料に含まれます。</li>
+      <li>※ 出張研修（首都圏外）は交通費・宿泊費を実費請求いたします。5名〜500名まで対応可能です。</li>
+    </ul>
+  </section>
+
+  <!-- CTA -->
+  <div class="cta">
+    <p class="eyebrow">FREE CONSULTATION</p>
+    <h2>まずは30分、無料でご相談ください。</h2>
+    <p>「何から始めればいいかわからない」という段階でも歓迎です。<br>貴社の課題をお聞きし、最適なプランをご提案します。</p>
+    <a class="button" href="mailto:kato@aymsr-ai.com">無料相談を予約する</a>
+    <p class="small">完全無料 ・ 30分 ・ しつこい営業なし</p>
+  </div>
+
+</div>
+
+<footer>© 2026 あゆ実社労士事務所　All rights reserved.　本料金表はすべて税別表示です。</footer>
+
+</body>
+</html>
