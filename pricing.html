@@ -61,29 +61,24 @@
   h2 { font-size: 24px; color: var(--navy); margin-bottom: 8px; }
   .sec-lead { color: var(--muted); font-size: 14px; margin-bottom: 24px; }
 
-  /* 顧問プランカード */
-  .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-  .plan {
-    background: #fff;
-    border: 1px solid var(--line);
-    border-radius: 10px;
-    padding: 24px 20px;
-    position: relative;
-  }
-  .plan.featured { border: 2px solid var(--gold); }
-  .plan .tag {
-    position: absolute; top: -12px; right: 14px;
-    background: var(--gold); color: #fff;
-    font-size: 11px; font-weight: 700;
-    padding: 3px 12px; border-radius: 999px;
-  }
-  .plan .name { font-size: 13px; font-weight: 700; color: var(--gold); letter-spacing: 0.12em; }
-  .plan .price { font-size: 28px; font-weight: 700; color: var(--navy); margin: 6px 0 2px; }
-  .plan .price small { font-size: 13px; font-weight: 400; color: var(--muted); }
-  .plan .scope { font-size: 13px; font-weight: 700; border-bottom: 1px solid var(--line); padding-bottom: 10px; margin-bottom: 10px; }
-  .plan ul { list-style: none; font-size: 13px; color: var(--muted); }
-  .plan li { padding: 4px 0 4px 16px; position: relative; }
-  .plan li::before { content: "—"; position: absolute; left: 0; color: var(--gold); }
+  /* 顧問プラン比較表 */
+  .plan-comparison-scroll { max-width: 100%; overflow-x: auto; border-radius: 10px; }
+  .plan-comparison-scroll:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+  .plan-comparison { min-width: 720px; table-layout: fixed; }
+  .plan-comparison th:first-child { width: 34%; }
+  .plan-comparison thead th:not(:first-child), .plan-comparison td { text-align: center; }
+  .plan-comparison thead th { vertical-align: middle; }
+  .plan-comparison td { color: var(--ink); }
+  .plan-comparison tbody .standard-col { background: #fbf6e9; }
+  .plan-comparison thead .standard-col { background: var(--navy-2); }
+  .popular-badge { display: inline-block; margin: 4px 0 4px 5px; padding: 2px 9px; border-radius: 999px; background: var(--gold); color: var(--navy); font-size: 11px; white-space: nowrap; }
+  .plan-price-row td { font-size: 20px; font-weight: 700; color: var(--navy); white-space: nowrap; }
+  .plan-common { margin: 24px 0; padding: 22px 24px; background: var(--accent-bg); border-radius: 10px; }
+  .plan-common h3 { font-size: 16px; color: var(--navy); margin-bottom: 10px; }
+  .plan-common ul { display: flex; flex-wrap: wrap; gap: 8px 28px; padding-left: 1.2em; font-size: 13px; color: var(--ink); }
+  .plan-scroll-hint { display: none; font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+  @media (max-width: 800px) { .plan-scroll-hint { display: block; } }
+  @media print { .plan-comparison-scroll { overflow: visible; } .plan-comparison { min-width: 0; } .plan-scroll-hint { display: none; } }
   .enterprise {
     margin-top: 14px;
     background: var(--navy);
@@ -176,14 +171,13 @@
   footer { text-align: center; font-size: 12px; color: var(--muted); padding: 20px 0 40px; }
 
   @media (max-width: 720px) {
-    .plans { grid-template-columns: 1fr; }
     .enterprise { flex-direction: column; align-items: flex-start; }
   }
   @media print {
     body { background: #fff; }
     .hero, .compare-wrap, .cta, thead th { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
     .section { padding: 28px 0 4px; page-break-inside: avoid; }
-    .plans, table { page-break-inside: avoid; }
+    table { page-break-inside: avoid; }
     @page { size: A4; margin: 12mm; }
   }
 </style>
@@ -195,7 +189,7 @@
   <p class="eyebrow">FEE SCHEDULE</p>
   <h1>サービス料金表</h1>
   <p>顧問契約とスポット依頼、どちらにも対応しています。<br>顧問先はすべてのスポット料金が約30%OFFになります。</p>
-  <span class="badge">すべて税別表示 ・ 改訂：2026年8月</span>
+  <span class="badge">すべて税別表示 ・ 改訂：2026年10月</span>
 </div>
 
 <div class="page">
@@ -204,44 +198,36 @@
   <section class="section">
     <p class="sec-label">01&nbsp;&nbsp;MONTHLY RETAINER</p>
     <h2>月額顧問プラン</h2>
-    <p class="sec-lead">日常の労務管理をまるごとカバーします。相談のたびに料金は発生しません。すべてのスポット料金が顧問先価格（約30%OFF）になります。</p>
-    <div class="plans">
-      <div class="plan">
-        <p class="name">LIGHT</p>
-        <p class="price">¥25,000<small>〜 / 月</small></p>
-        <p class="scope">従業員 〜 9名</p>
-        <ul>
-          <li>社会保険・労働保険手続き（月3件まで）</li>
-          <li>チャット労務相談（無制限）</li>
-          <li>法改正情報の提供</li>
-          <li>スポット料金 顧問先価格</li>
-        </ul>
-      </div>
-      <div class="plan featured">
-        <span class="tag">人気</span>
-        <p class="name">STANDARD</p>
-        <p class="price">¥45,000<small>〜 / 月</small></p>
-        <p class="scope">従業員 10 〜 29名</p>
-        <ul>
-          <li>手続き全般（件数無制限）</li>
-          <li>労務相談（チャット無制限・面談 月2回）</li>
-          <li>算定基礎届・労働保険年度更新 込み</li>
-          <li>就業規則の軽微変更 対応</li>
-          <li>給与計算チェック</li>
-        </ul>
-      </div>
-      <div class="plan">
-        <p class="name">PREMIUM</p>
-        <p class="price">¥80,000<small>〜 / 月</small></p>
-        <p class="scope">従業員 30 〜 99名</p>
-        <ul>
-          <li>STANDARDの全内容</li>
-          <li>給与計算代行 込み</li>
-          <li>就業規則の定期見直し</li>
-          <li>助成金診断・着手金無料</li>
-          <li>研修 1回 / 年（半日）</li>
-        </ul>
-      </div>
+    <p class="sec-lead">日常の労務管理をまるごとカバーします。チャット労務相談は全プラン無制限です。すべてのスポット料金が顧問先価格（約30%OFF）になります。</p>
+    <p class="plan-scroll-hint" id="plan-scroll-hint">横にスクロールして各プランを比較できます。</p>
+    <div class="plan-comparison-scroll" role="region" aria-label="月額顧問プラン比較表" aria-describedby="plan-scroll-hint" tabindex="0">
+      <table class="plan-comparison" aria-label="月額顧問プランの料金とサービス比較">
+        <thead>
+          <tr><th scope="col">比較項目</th><th scope="col">LIGHT</th><th scope="col" class="standard-col">STANDARD <span class="popular-badge">人気</span></th><th scope="col">PREMIUM</th></tr>
+        </thead>
+        <tbody>
+          <tr class="plan-price-row"><th scope="row">月額（税別）</th><td>¥25,000〜</td><td class="standard-col">¥45,000〜</td><td>¥80,000〜</td></tr>
+          <tr><th scope="row">対象従業員数</th><td>〜9名</td><td class="standard-col">10〜29名</td><td>30〜99名</td></tr>
+          <tr><th scope="row">社会保険・労働保険手続き</th><td>月3件まで</td><td class="standard-col">無制限</td><td>無制限</td></tr>
+          <tr><th scope="row">面談</th><td>—</td><td class="standard-col">月1回</td><td>月1回</td></tr>
+          <tr><th scope="row">算定基礎届・労働保険年度更新</th><td>別途 ¥21,000〜</td><td class="standard-col">込み</td><td>込み</td></tr>
+          <tr><th scope="row">就業規則 軽微変更</th><td>—</td><td class="standard-col">○</td><td>○</td></tr>
+          <tr><th scope="row">就業規則 定期見直し</th><td>—</td><td class="standard-col">—</td><td>○</td></tr>
+          <tr><th scope="row">給与計算</th><td>—</td><td class="standard-col">チェックのみ</td><td>代行 込み</td></tr>
+          <tr><th scope="row">助成金 着手金</th><td>¥30,000〜</td><td class="standard-col">¥30,000〜</td><td>無料</td></tr>
+          <tr><th scope="row">研修（半日・年1回）</th><td>—</td><td class="standard-col">—</td><td>込み</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="plan-common">
+      <h3>全プラン共通</h3>
+      <ul>
+        <li>チャット労務相談（無制限）</li>
+        <li>法改正情報の提供</li>
+        <li>助成金活用診断 無料（年1回）</li>
+        <li>労働基準監督署への届出代行 無料</li>
+        <li>スポット料金が顧問先価格（約30%OFF）</li>
+      </ul>
     </div>
     <div class="enterprise">
       <div>
@@ -306,7 +292,7 @@
           <th>個別労務相談（スポット）</th>
           <td class="spot">¥15,000 / 時間</td>
           <td class="komon"><span class="free">顧問料に込み</span></td>
-          <td>オンライン対応可</td>
+          <td>チャット相談は顧問料に込み。面談はSTANDARD以上</td>
         </tr>
       </tbody>
     </table>
