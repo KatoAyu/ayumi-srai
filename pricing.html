@@ -203,9 +203,13 @@
     table { page-break-inside: avoid; }
     @page { size: A4; margin: 12mm; }
   }
+.site-nav{background:var(--navy);padding:22px max(24px,calc((100% - 1100px)/2));display:flex;justify-content:space-between;align-items:center;gap:20px}.site-nav a{color:#fff;text-decoration:none}.site-nav .brand{font-weight:700;font-size:20px;white-space:nowrap}.brand span{color:var(--gold)}.site-links{display:flex;flex-wrap:wrap;gap:24px;font-size:14px}.site-nav a:hover{color:var(--gold-light)}
+@media(max-width:720px){.site-nav{flex-direction:column;align-items:flex-start;padding:18px 20px;gap:12px}.site-links{gap:20px}}
 </style>
 </head>
 <body>
+<nav class="site-nav" aria-label="グローバルナビゲーション"><a class="brand" href="/">あゆ実<span>社労士事務所</span></a><div class="site-links"><a href="/">ホーム</a><a href="/pricing">料金</a><a href="/news/">お知らせ</a><a href="/#contact">無料相談</a></div></nav>
+
 
 <div class="hero">
   <p style="margin-bottom:18px;"><a href="/" style="color:#c9d4e0; font-size:13px; text-decoration:none;">← あゆ実社労士事務所 トップページへ</a></p>

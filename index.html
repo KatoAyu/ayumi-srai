@@ -852,7 +852,11 @@
       .footer-bottom { flex-direction: column; text-align: center; }
       .hero-cta-group { flex-direction: column; align-items: flex-start; }
     }
-  </style>
+
+.nav-links { gap: clamp(12px,2vw,28px); }
+.nav-hamburger { background:transparent; border:0; padding:8px; cursor:pointer; }
+@media(max-width:1100px){.nav-links,.nav-cta{display:none}.nav-hamburger{display:flex}#mainNav.menu-open{background:var(--primary-dark)}#mainNav.menu-open .nav-links{display:flex;position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;background:var(--primary-dark);padding:12px 24px}#mainNav.menu-open .nav-links a{display:block;padding:12px}}
+</style>
 <meta name="google-site-verification" content="wxMHXnXzBD4Mny1jxIFVhFsa8-9Hd9LlwKALaplhGuA" />
 </head>
 <body id="top">
@@ -863,19 +867,20 @@
   <!-- Navigation -->
   <nav id="mainNav">
     <a href="#top" class="nav-logo">あゆ実<span>社労士事務所</span></a>
-    <ul class="nav-links">
+    <ul class="nav-links" id="navigationLinks">
       <li><a href="#problem">課題</a></li>
       <li><a href="#features">特徴</a></li>
       <li><a href="#results">実績</a></li>
       <li><a href="/pricing">料金</a></li>
+      <li><a href="/news/">お知らせ</a></li>
       <li><a href="#media">メディア</a></li>
       <li><a href="#faq">FAQ</a></li>
       <li><a href="#company">事務所概要</a></li>
     </ul>
     <a href="#contact" class="nav-cta">無料相談</a>
-    <div class="nav-hamburger" id="hamburger">
+    <button type="button" class="nav-hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false" aria-controls="navigationLinks">
       <span></span><span></span><span></span>
-    </div>
+    </button>
   </nav>
 
   <!-- Hero -->
@@ -1423,6 +1428,12 @@
       scrollBar.style.width = scrolled + '%';
     }, { passive: true });
 
+    const hamburger = document.getElementById('hamburger');
+    const menu = document.getElementById('mainNav');
+    const closeMenu = () => { menu.classList.remove('menu-open'); hamburger.setAttribute('aria-expanded','false'); hamburger.setAttribute('aria-label','メニューを開く'); };
+    hamburger.addEventListener('click', () => { const open = menu.classList.toggle('menu-open'); hamburger.setAttribute('aria-expanded', String(open)); hamburger.setAttribute('aria-label',open?'メニューを閉じる':'メニューを開く'); });
+    document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',closeMenu));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape' && menu.classList.contains('menu-open')){closeMenu();hamburger.focus();}});
     // Nav scrolled state
     const mainNav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => {
