@@ -25,13 +25,19 @@ test('invalid metadata fails instead of publishing malformed paths or dates',()=
   ]) assert.throws(()=>parseArticle(text,'fixture'));
 });
 test('production, preview, article addition, sitemap and stale removal',async()=>{
-  let result=await build({today:'2026-10-25'});
-  assert.equal(result.count,1);
+  const today='2026-10-25';
+  const articles=await Promise.all((await readdir(path.join(root,'news')))
+    .filter(f=>f.endsWith('.md'))
+    .map(async f=>parseArticle(await read('news/'+f),f)));
+  const published=articles.filter(a=>!a.draft&&a.date<=today);
+  let result=await build({today});
+  assert.equal(result.count,published.length);
+  const baselineSitemapCount=((await read('dist/sitemap.xml')).match(/<loc>/g)||[]).length;
   assert.match(await read('dist/news/index.html'),/customer-harassment/);
   assert.match(await read('dist/sitemap.xml'),/customer-harassment/);
   assert.deepEqual((await readdir(path.join(root,'dist'))).sort(),['index.html','news','pricing.html','profile.jpg','robots.txt','sitemap.xml','speaker.png']);
   result=await build({preview:true});
-  assert.equal(result.count,1);
+  assert.equal(result.count,articles.length);
   const html=await read('work/preview/news/2026-10-25-customer-harassment/index.html');
   assert.equal((html.match(/<h1>/g)||[]).length,1);
   assert.equal((html.match(/class="table-scroll"/g)||[]).length,2);
@@ -47,12 +53,12 @@ test('production, preview, article addition, sitemap and stale removal',async()=
     await writeFile(path.join(root,'news',files[1]),fixture('<新しい記事>','2026-10-25'));
     await writeFile(path.join(root,'news',files[2]),fixture('未来記事','2099-01-01'));
     await writeFile(path.join(root,'news',files[3]),fixture('下書き','2026-10-23','draft: true\n'));
-    result=await build({today:'2026-10-25'});assert.equal(result.count,3);
+    result=await build({today:'2026-10-25'});assert.equal(result.count,published.length+2);
     const list=await read('dist/news/index.html');
     assert.ok(list.indexOf('&lt;新しい記事&gt;')<list.indexOf('古い記事'));
     assert.doesNotMatch(list,/未来記事|下書き/);
     const sitemap=await read('dist/sitemap.xml');
-    assert.equal((sitemap.match(/<loc>/g)||[]).length,6);
+    assert.equal((sitemap.match(/<loc>/g)||[]).length,baselineSitemapCount+2);
     assert.match(sitemap,/<lastmod>2026-10-25<\/lastmod>/);
     assert.match(sitemap,/https:\/\/sr.aymsr-ai.com\/pricing<\/loc>/);
     assert.match(await read('dist/news/2026-10-25-test/index.html'),/og:type" content="article"/);
@@ -60,7 +66,7 @@ test('production, preview, article addition, sitemap and stale removal',async()=
     for(const f of files)await unlink(path.join(root,'news',f)).catch(()=>{});
     await build({today:'2026-10-25'});
   }
-  assert.deepEqual((await readdir(path.join(root,'dist/news'))).sort(),['2026-10-25-customer-harassment','index.html']);
+  assert.deepEqual((await readdir(path.join(root,'dist/news'))).sort(),[...published.map(a=>a.slug),'index.html'].sort());
 });
 
 
