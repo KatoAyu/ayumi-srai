@@ -73,3 +73,14 @@ PR #1（https://github.com/KatoAyu/ayumi-srai/pull/1）をmainへマージ済み
 本番ブラウザで一覧から記事を開き、公開日・基準日・出典・免責・相談リンクを確認。幅390pxで2つの表のscrollLeftが各0→40に変わることを操作確認。ページ全体の横はみ出しなし。
 テスト3件成功、通常ビルドで1記事生成。原稿本文・出典リンクは変更なし。
 Gitの認証ヘルパーが起動できなかったため、接続済みGitHubツールでブランチに反映しPRをマージ。ローカルmainも同期済み。
+
+
+## 今回の反映（2026-11-12完了）
+加藤さんの公開指示に基づき、接続済みGitHubツールで第2号をmainへ直接反映。
+公開コミット: bf414abdffade160385c768e0c759e7e3071dca9（news/2026-11-11-shakaihoken-tekiyokakudai.md の1ファイルのみ）。
+配置済み原稿とGitHub上の内容が完全一致することを確認。本文・法令・数値・出典は変更なし。
+本番の記事 https://sr.aymsr-ai.com/news/2026-11-11-shakaihoken-tekiyokakudai/ と一覧 https://sr.aymsr-ai.com/news/ のHTTP 200を確認。一覧の最初の記事リンクが第2号であることを確認。
+テスト修正コミット: 4f3f33c37561f43c45934786bdb4ea792d79e3cd（scripts/build.test.mjs のみ、公開とは別コミット）。
+公開対象件数を記事メタデータと固定基準日から算出し、プレビュー件数は全記事数で検証。追加後の件数・サイトマップ件数・削除後のディレクトリも基準値に応じて検証するよう修正。
+npm test: 3件成功・失敗0。npm run build: 2 article(s) → dist。
+dist/・work/・node_modules/ はコミット対象外。配信メールは送信していない。
