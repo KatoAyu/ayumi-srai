@@ -41,7 +41,7 @@
   }
   * { box-sizing: border-box; margin: 0; }
   body {
-    font-family: "Noto Sans JP", "Hiragino Sans", "Yu Gothic", sans-serif;
+    font-family:'Noto Serif JP', 'Yu Mincho', 'Hiragino Mincho ProN', serif;
     color: var(--ink);
     background: var(--bg);
     line-height: 1.7;
@@ -206,9 +206,9 @@
 .site-nav{background:var(--navy);padding:22px max(24px,calc((100% - 1100px)/2));display:flex;justify-content:space-between;align-items:center;gap:20px}.site-nav a{color:#fff;text-decoration:none}.site-nav .brand{font-weight:700;font-size:20px;white-space:nowrap}.brand span{color:var(--gold)}.site-links{display:flex;flex-wrap:wrap;gap:24px;font-size:14px}.site-nav a:hover{color:var(--gold-light)}
 @media(max-width:720px){.site-nav{flex-direction:column;align-items:flex-start;padding:18px 20px;gap:12px}.site-links{gap:20px}}
 </style>
-</head>
-<body>
-<nav class="site-nav" aria-label="グローバルナビゲーション"><a class="brand" href="/">あゆ実<span>社労士事務所</span></a><div class="site-links"><a href="/">ホーム</a><a href="/pricing">料金</a><a href="/news/">お知らせ</a><a href="/#contact">無料相談</a></div></nav>
+<link rel="stylesheet" href="/warm.css"><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/sakura.css"><link rel="stylesheet" href="/subpages.css"></head>
+<body class="pricing-page">
+<nav class="site-nav" aria-label="グローバルナビゲーション"><a class="brand" href="/">あゆ実<span>社労士事務所</span></a><div class="site-links"><a href="/">ホーム</a><a href="/pricing">料金表</a><a href="/news/">お知らせ</a><a class="consult-link" href="/contact">無料相談</a></div></nav>
 
 
 <div class="hero">
@@ -459,7 +459,7 @@
     <p class="eyebrow">FREE CONSULTATION</p>
     <h2>まずは30分、無料でご相談ください。</h2>
     <p>「何から始めればいいかわからない」という段階でも歓迎です。<br>貴社の課題をお聞きし、最適なプランをご提案します。</p>
-    <a class="button" href="mailto:kato@aymsr-ai.com">無料相談を予約する</a>
+    <a class="button" href="/contact">無料相談を予約する</a>
     <p class="small">完全無料 ・ 30分 ・ しつこい営業なし</p>
   </div>
 
@@ -469,3 +469,4 @@
 
 </body>
 </html>
+

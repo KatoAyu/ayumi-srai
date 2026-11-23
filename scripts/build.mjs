@@ -47,22 +47,22 @@ export async function build({preview=false,today=new Date().toLocaleDateString('
 <title>${esc(title)}｜あゆ実社労士事務所</title><meta name="description" content="${esc(description)}">
 <link rel="canonical" href="${origin+url}"><meta property="og:title" content="${esc(title)}｜あゆ実社労士事務所"><meta property="og:description" content="${esc(description)}"><meta property="og:type" content="${a?'article':'website'}"><meta property="og:url" content="${origin+url}"><meta property="og:locale" content="ja_JP"><meta property="og:site_name" content="あゆ実社労士事務所">
 ${preview?'<meta name="robots" content="noindex,nofollow">':''}${data?'<script type="application/ld+json">'+data+'</script>':''}
-<style>${css}</style></head><body><a class="skip" href="#main">本文へ</a>${nav}
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&display=swap" rel="stylesheet"><link rel="stylesheet" href="/warm.css"><link rel="stylesheet" href="/sakura.css"><style>${css}</style></head><body class="news-page"><a class="skip-link" href="#main">本文へ</a>${nav}
 ${preview?'<p class="preview">ローカル確認用プレビュー（下書きを含みます）</p>':''}
-<main id="main" class="news-page">${content}</main><footer>あゆ実社労士事務所</footer></body></html>`;
+<main id="main" class="reading-wrap">${content}</main><footer class="sub-footer"><a href="/">あゆ実社労士事務所</a><p>© 2026 あゆ実社労士事務所</p></footer></body></html>`;
   }
   await rm(out,{recursive:true,force:true});
   await mkdir(path.join(out,'news'),{recursive:true});
   // Allowlist excludes drafts, tooling and documentation from public output.
-  for(const f of ['index.html','pricing.html','profile.jpg','speaker.png','robots.txt']) await cp(path.join(root,f),path.join(out,f));
+  for(const f of ['index.html', 'pricing.html', 'contact.html', 'warm.css', 'sakura.css', 'subpages.css', 'warm.js', 'columns.js', 'profile.jpg', 'speaker.png', 'robots.txt']) await cp(path.join(root,f),path.join(out,f));
   for(const a of articles) {
-    const content=`<a class="back" href="/news/">← お知らせ一覧</a><article><header class="article-header"><p class="eyebrow">NEWS</p><h1>${esc(a.title)}</h1><p class="meta">公開日：<time datetime="${a.date}">${jp(a.date)}</time>${a.updated!==a.date?' ／ 更新日：<time datetime="'+a.updated+'">'+jp(a.updated)+'</time>':''}</p><p class="reference-date">${jp(a.updated)}時点の情報です</p></header>
-<div class="prose">${md.render(a.body)}</div><aside class="disclaimer"><h2>免責</h2><p>本記事は、${jp(a.updated)}時点で公表されている法令・指針に基づく<strong>一般的な情報提供</strong>です。個別の事案については、事実関係によって判断が変わります。実際のご対応にあたっては、顧問先の皆さまは個別にご相談ください。</p><p>また、税務に関する事項は税理士の先生にご確認ください。</p></aside></article>
-<section class="consult"><h2>労務のお悩み、ご相談ください</h2><p>初回30分の無料相談を受け付けています。</p><a class="button" href="/#contact">無料相談を予約する</a></section><a class="back" href="/news/">← お知らせ一覧へ戻る</a>`;
+    const content=`<a class="read-link" href="/news/">← お知らせ一覧</a><article><header class="article-heading"><p class="eyebrow">NEWS</p><h1>${esc(a.title)}</h1><p class="article-date">公開日：<time datetime="${a.date}">${jp(a.date)}</time>${a.updated!==a.date?' ／ 更新日：<time datetime="'+a.updated+'">'+jp(a.updated)+'</time>':''}</p><p class="reference-date">${jp(a.updated)}時点の情報です</p></header>
+<div class="prose">${md.render(a.body)}</div><aside class="article-note"><h2>免責</h2><p>本記事は、${jp(a.updated)}時点で公表されている法令・指針に基づく<strong>一般的な情報提供</strong>です。個別の事案については、事実関係によって判断が変わります。実際のご対応にあたっては、顧問先の皆さまは個別にご相談ください。</p><p>また、税務に関する事項は税理士の先生にご確認ください。</p></aside></article>
+<section class="sub-consult"><h2>労務のお悩み、ご相談ください</h2><p>初回30分の無料相談を受け付けています。</p><a class="btn-primary" href="/contact">無料相談を予約する</a></section><a class="read-link" href="/news/">← お知らせ一覧へ戻る</a>`;
     const target=path.join(out,'news',a.slug);await mkdir(target,{recursive:true});
     await writeFile(path.join(target,'index.html'),page(a.title,a.description||a.summary,a.url,content,a));
   }
-  const content=`<header class="article-header"><p class="eyebrow">NEWS</p><h1>お知らせ</h1><p class="intro">労務管理や制度の動きなど、事業主の皆さまに役立つ情報をお届けします。</p></header>${articles.length?'<ul class="news-list">'+articles.map(a=>'<li><time datetime="'+a.date+'">'+jp(a.date)+'</time><div><h2><a href="'+a.url+'">'+esc(a.title)+'</a></h2><p>'+esc(a.summary)+'</p></div></li>').join('')+'</ul>':'<p class="empty">お知らせは準備中です。</p>'}<a class="back" href="/">← トップページへ</a>`;
+  const content=`<header class="article-heading"><p class="eyebrow">NEWS</p><h1>お知らせ</h1><p class="intro">労務管理や制度の動きなど、事業主の皆さまに役立つ情報をお届けします。</p></header>${articles.length?'<ul class="news-list">'+articles.map(a=>'<li><time datetime="'+a.date+'">'+jp(a.date)+'</time><div><h2><a href="'+a.url+'">'+esc(a.title)+'</a></h2><p>'+esc(a.summary)+'</p></div></li>').join('')+'</ul>':'<p class="empty">お知らせは準備中です。</p>'}<a class="read-link" href="/">← トップページへ</a>`;
   await writeFile(path.join(out,'news/index.html'),page('お知らせ','あゆ実社労士事務所から、労務管理や制度の動きに関するお知らせをお届けします。','/news/',content));
   const base=(await readFile(path.join(root,'sitemap.xml'),'utf8')).replace(/\s*<url>\s*<loc>https:\/\/sr\.aymsr-ai\.com\/news\/[\s\S]*?<\/url>/g,'');
   const entries=[{url:'/news/'},...articles].map(a=>'<url><loc>'+origin+a.url+'</loc>'+(a.updated?'<lastmod>'+a.updated+'</lastmod>':'')+'</url>').join('\n');
@@ -73,4 +73,5 @@ ${preview?'<p class="preview">ローカル確認用プレビュー（下書き�
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const r=await build({preview:process.argv.includes('--preview')});console.log(r.count+' article(s) → '+r.out);
 }
+
 
