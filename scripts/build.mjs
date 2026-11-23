@@ -55,6 +55,8 @@ ${preview?'<p class="preview">ローカル確認用プレビュー（下書き�
   await mkdir(path.join(out,'news'),{recursive:true});
   // Allowlist excludes drafts, tooling and documentation from public output.
   for(const f of ['index.html', 'pricing.html', 'contact.html', 'warm.css', 'sakura.css', 'subpages.css', 'warm.js', 'columns.js', 'profile.jpg', 'speaker.png', 'robots.txt']) await cp(path.join(root,f),path.join(out,f));
+  await mkdir(path.join(out,'assets'),{recursive:true});
+  for(const f of ['consultation.jpg','team-learning.jpg']) await cp(path.join(root,'assets',f),path.join(out,'assets',f));
   for(const a of articles) {
     const content=`<a class="read-link" href="/news/">← お知らせ一覧</a><article><header class="article-heading"><p class="eyebrow">NEWS</p><h1>${esc(a.title)}</h1><p class="article-date">公開日：<time datetime="${a.date}">${jp(a.date)}</time>${a.updated!==a.date?' ／ 更新日：<time datetime="'+a.updated+'">'+jp(a.updated)+'</time>':''}</p><p class="reference-date">${jp(a.updated)}時点の情報です</p></header>
 <div class="prose">${md.render(a.body)}</div><aside class="article-note"><h2>免責</h2><p>本記事は、${jp(a.updated)}時点で公表されている法令・指針に基づく<strong>一般的な情報提供</strong>です。個別の事案については、事実関係によって判断が変わります。実際のご対応にあたっては、顧問先の皆さまは個別にご相談ください。</p><p>また、税務に関する事項は税理士の先生にご確認ください。</p></aside></article>
@@ -73,5 +75,6 @@ ${preview?'<p class="preview">ローカル確認用プレビュー（下書き�
 if(process.argv[1]&&path.resolve(process.argv[1])===fileURLToPath(import.meta.url)) {
   const r=await build({preview:process.argv.includes('--preview')});console.log(r.count+' article(s) → '+r.out);
 }
+
 
 

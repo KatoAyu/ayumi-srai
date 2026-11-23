@@ -35,7 +35,7 @@ test('production, preview, article addition, sitemap and stale removal',async()=
   const baselineSitemapCount=((await read('dist/sitemap.xml')).match(/<loc>/g)||[]).length;
   assert.match(await read('dist/news/index.html'),/customer-harassment/);
   assert.match(await read('dist/sitemap.xml'),/customer-harassment/);
-  assert.deepEqual((await readdir(path.join(root,'dist'))).sort(),['columns.js', 'contact.html', 'index.html', 'news', 'pricing.html', 'profile.jpg', 'robots.txt', 'sakura.css', 'sitemap.xml', 'speaker.png', 'subpages.css', 'warm.css', 'warm.js']);
+  assert.deepEqual((await readdir(path.join(root,'dist'))).sort(),['assets', 'columns.js', 'contact.html', 'index.html', 'news', 'pricing.html', 'profile.jpg', 'robots.txt', 'sakura.css', 'sitemap.xml', 'speaker.png', 'subpages.css', 'warm.css', 'warm.js']);
   result=await build({preview:true});
   assert.equal(result.count,articles.length);
   const html=await read('work/preview/news/2026-10-25-customer-harassment/index.html');
@@ -75,4 +75,5 @@ test('navigation has a closed accessible mobile button on home and news links on
  assert.match(home,/<button[^>]+id="hamburger"[^>]+aria-controls="navigationLinks">\s*<span><\/span><span><\/span><span><\/span>\s*<\/button>/);
  for(const file of ['index.html','pricing.html'])assert.match(await read(file),/href="\/news\/"/);
 });
+
 
