@@ -43,3 +43,9 @@ footer{background:#f0e5db;color:#493d36;padding-top:60px}footer .nav-logo{color:
 /* One chronological list for office news and columns. */
 .updates-grid{display:flex;flex-direction:column;gap:0}.updates-grid .media-card{display:grid;grid-template-columns:110px 90px 1fr;gap:12px 24px;align-items:baseline;padding:26px 0}.updates-grid .media-card-date{grid-column:1;grid-row:1;margin:0}.updates-grid .media-card-source{grid-column:2;grid-row:1;font-size:.875rem}.updates-grid .media-card-title{grid-column:3;grid-row:1}.updates-grid .column-external{grid-column:3;margin:0}.updates-grid [data-kind="news"] .media-card-source{color:#65574e}
 @media(max-width:700px){.updates-grid .media-card{grid-template-columns:110px 1fr;gap:10px 16px;padding:24px 0}.updates-grid .media-card-title{grid-column:1/-1;grid-row:2}.updates-grid .column-external{grid-column:1/-1;grid-row:3}}
+
+/* Final mobile visual verification fixes. */
+.pricing-page .hero a{color:#79535c!important}
+@media(max-width:700px){body:not(.pricing-page) .hero h1{font-size:clamp(1.65rem,7vw,2.15rem)}}
+
+
